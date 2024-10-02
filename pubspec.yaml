@@ -1,0 +1,39 @@
+name: mental_count_race_widgets
+description: "Mental Count Race Widgets"
+version: 0.0.1
+
+environment:
+  sdk: ^3.5.3
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  # Core
+  freezed: 2.5.7
+  freezed_annotation: 2.4.4
+  json_annotation: 4.9.0
+  collection: any
+  # UI
+  flutter_animate: 4.3.0
+  carousel_slider: 5.0.0
+  stop_watch_timer: 3.2.1
+  fl_chart: 0.69.0
+  numberpicker: 2.1.2
+  # Internal
+  pythagoras_match:
+    git:
+      url: git@github.com:programming-stayler/pythagoras_match.git
+      ref: main
+  pythagoras:
+    git:
+      url: git@github.com:programming-stayler/pythagoras_dart.git
+      ref: main
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+  json_serializable: 6.8.0
+  build_resolvers: 2.4.2
+  build_runner: 2.4.12
