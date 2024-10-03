@@ -67,7 +67,7 @@ final neuBrutalism = () {
     colorHex: actionColor,
   );
   return AppStyleSystem(
-    fontFamily: '',
+    fontFamily: 'Popins',
     actionColorHex: actionColor,
     screenBGColorHex: screenColor,
     desaturatedColorHex: '999999',
@@ -94,8 +94,8 @@ final neuBrutalism = () {
         24,
       ),
       border: border.copyWith(
-        left: border.left?.copyWith(colorHex: appSheetBorderColor),
-        right: border.right?.copyWith(colorHex: appSheetBorderColor),
+        left: border.left?.copyWith(colorHex: appSheetBorderColor, width: 1.5),
+        right: border.right?.copyWith(colorHex: appSheetBorderColor, width: 1.5),
         top: border.top?.copyWith(colorHex: appSheetBorderColor),
         bottom: border.bottom?.copyWith(colorHex: appSheetBorderColor),
       ),

@@ -107,7 +107,7 @@ enum AppSheetType {
   fromBottom,
 }
 
-class AppSheetScaffold extends StatelessWidget {
+class AppSheetScaffold extends StatefulWidget {
   final List<Widget> topChildren;
   final List<Widget> bodyChildren;
   final List<Widget> bottomChildren;
@@ -122,6 +122,36 @@ class AppSheetScaffold extends StatelessWidget {
   });
 
   @override
+  State<AppSheetScaffold> createState() => _AppSheetScaffoldState();
+}
+
+class _AppSheetScaffoldState extends State<AppSheetScaffold>
+    with SingleTickerProviderStateMixin {
+  late AnimationController controller;
+  var showBody = false;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = widget.controller ??
+        AnimationController(
+          vsync: this,
+          duration: 350.milliseconds,
+        );
+    if (widget.controller == null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        controller
+            .forward(
+              from: 0.0,
+            )
+            .then(
+              (value) => setState(() => showBody = true),
+            );
+      });
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Material(
       child: BGWrapper(
@@ -130,24 +160,35 @@ class AppSheetScaffold extends StatelessWidget {
           children: [
             AppSheet(
               type: AppSheetType.fromTop,
-              controller: controller,
-              children: topChildren,
+              controller: widget.controller,
+              children: widget.topChildren,
             ),
             Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: bodyChildren,
+              child: AnimatedOpacity(
+                opacity: showBody ? 1 : 0,
+                duration: 150.milliseconds,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: widget.bodyChildren,
+                ),
               ),
             ),
+            if (!showBody) const Spacer(),
             AppSheet(
               type: AppSheetType.fromBottom,
-              controller: controller,
-              children: bottomChildren,
+              controller: widget.controller,
+              children: widget.bottomChildren,
             ),
           ],
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 }
 

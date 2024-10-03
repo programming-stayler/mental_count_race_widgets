@@ -4,6 +4,7 @@ import 'package:mental_count_race_widgets/widgets.dart';
 import 'app_sheet/screen.dart';
 import 'charts/screen.dart';
 import 'expression_viewer/screen.dart';
+import 'fields/screen.dart';
 import 'keyboard/screen.dart';
 import 'pickers/screen.dart';
 import 'players_progress/screen.dart';
@@ -102,6 +103,17 @@ class _ComplexGuideScreenState extends State<ComplexGuideScreen> {
               ),
               onTap: () => Navigator.of(context).push(
                 PickersGuideScreen.getRoute(),
+              ),
+            ),
+            AppPadding.verticalPadding32,
+            InkWell(
+              child: AppText(
+                'Fields',
+                textAlign: TextAlign.center,
+                uiStyle: style.textStyle.boldFont.simple,
+              ),
+              onTap: () => Navigator.of(context).push(
+                FieldsGuideScreen.getRoute(),
               ),
             ),
             const Spacer(),

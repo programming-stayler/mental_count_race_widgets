@@ -32,7 +32,8 @@ class _ExpressionBuilderWidgetState extends State<ExpressionBuilderWidget> {
         final compNum = comps[i + 1];
         children.add(
           _RemovableWrapper(
-            index: i + 1,
+            key: ValueKey(compNum),
+            index: i,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
@@ -75,6 +76,7 @@ class _RemovableWrapper extends StatelessWidget {
   final ValueChanged<int> onPressed;
 
   const _RemovableWrapper({
+    super.key,
     required this.index,
     required this.child,
     required this.onPressed,
@@ -86,7 +88,7 @@ class _RemovableWrapper extends StatelessWidget {
     return Row(
       children: [
         SizedBox(
-          width: 40.toWidth,
+          width: 32.toWidth,
           child: IconButton(
             onPressed: () => onPressed(index),
             icon: Icon(
@@ -96,7 +98,7 @@ class _RemovableWrapper extends StatelessWidget {
           ),
         ),
         Expanded(child: child),
-        AppPadding.horizontalPadding40,
+        AppPadding.horizontalPadding32,
       ],
     );
   }

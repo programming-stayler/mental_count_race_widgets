@@ -20,8 +20,8 @@ class ExpressionBuilderController {
   }
 
   void removeComponentAtIndex(int index) {
-    _components.removeAt(index - 1);
-    _components.removeAt(index - 1);
+    _components.removeAt(index);
+    _components.removeAt(index);
   }
 
   ExpressionBuilderParams buildPattern() {

@@ -16,7 +16,12 @@ class ExpressionText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final style = AppGlobalStyle.of(context).style;
-    final textStyle = style.textStyle.regularFont.numberTitle;
+    final textStyle = style.textStyle.regularFont.numberTitle.copyWith(
+      colorHex: '808285',
+    );
+    final selectedTextStyle = style.textStyle.semiBoldFont.numberTitle.copyWith(
+      colorHex: '343434',
+    );
     return Container(
       constraints: BoxConstraints(
         minWidth: 24.toWidth,
@@ -24,9 +29,7 @@ class ExpressionText extends StatelessWidget {
       child: AppText(
         model.title,
         textAlign: TextAlign.center,
-        uiStyle: textStyle.copyWith(
-          colorHex: selected == null || selected! ? '343434' : '808285',
-        ),
+        uiStyle: selected == null || selected! ? selectedTextStyle : textStyle,
       ),
     );
   }

@@ -27,13 +27,13 @@ class _PickersGuideScreenState extends State<PickersGuideScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final globalStyle = AppGlobalStyle.of(context).style;
+    final style = AppGlobalStyle.of(context).style;
     return AppSheetScaffold(
       topChildren: [
         AppSheetBar(
           title: AppText(
             'Pickers Guide',
-            uiStyle: globalStyle.textStyle.regularFont.tileTitle,
+            uiStyle: style.textStyle.regularFont.tileTitle,
           ),
         ),
       ],
@@ -49,8 +49,8 @@ class _PickersGuideScreenState extends State<PickersGuideScreen> {
                   values: MatchLimitType.values,
                   onChanged: (mode) => setState(() => matchLimit = mode),
                 ),
-                if (matchLimit.type != MatchLimitType.infinite) ...[
-                  AppPadding.verticalPadding32,
+                AppPadding.verticalPadding32,
+                if (matchLimit.type != MatchLimitType.infinite)
                   SliderNumbersPicker(
                     value: values[matchLimit.type] ??
                         matchLimit.type.initialLimitValue,
@@ -74,10 +74,19 @@ class _PickersGuideScreenState extends State<PickersGuideScreen> {
                           break;
                       }
                     }),
+                  )
+                else
+                  SizedBox(
+                    height: 48.toHeight,
+                    child: AppText(
+                      '∞',
+                      textAlign: TextAlign.center,
+                      uiStyle: style.textStyle.semiBoldFont.tileTitle
+                          .copyWith(colorHex: style.borderColorHex),
+                    ),
                   ),
-                ],
                 AppPadding.verticalPadding32,
-                AppPadding.horizontalWrapper16(
+                AppPadding.horizontalWrapper8(
                   child: ExpressionBuilderWidget(
                     controller: builderController,
                   ),
