@@ -174,11 +174,12 @@ class _AppSheetScaffoldState extends State<AppSheetScaffold>
               ),
             ),
             if (!showBody) const Spacer(),
-            AppSheet(
-              type: AppSheetType.fromBottom,
-              controller: widget.controller,
-              children: widget.bottomChildren,
-            ),
+            if (widget.bottomChildren.isNotEmpty)
+              AppSheet(
+                type: AppSheetType.fromBottom,
+                controller: widget.controller,
+                children: widget.bottomChildren,
+              ),
           ],
         ),
       ),

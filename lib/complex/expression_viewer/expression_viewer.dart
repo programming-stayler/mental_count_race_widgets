@@ -57,11 +57,8 @@ class _ExpressionViewerState extends State<ExpressionViewer> {
               CarouselSlider(
                 items: items,
                 carouselController: controller.carouselController,
-                options: CarouselOptions(
-                  height: 140.toHeight,
+                options: _CarouselOptions(
                   viewportFraction: fraction,
-                  enableInfiniteScroll: false,
-                  scrollDirection: Axis.vertical,
                   onPageChanged: (index, _) {
                     if (index % 2 != 0) {
                       Future.delayed(const Duration(milliseconds: 100)).then(
@@ -121,4 +118,15 @@ class _ExpressionViewerState extends State<ExpressionViewer> {
       },
     );
   }
+}
+
+class _CarouselOptions extends CarouselOptions {
+  _CarouselOptions({
+    super.viewportFraction,
+    super.onPageChanged,
+  }) : super(
+          height: 140.toHeight,
+          enableInfiniteScroll: false,
+          scrollDirection: Axis.vertical,
+        );
 }
