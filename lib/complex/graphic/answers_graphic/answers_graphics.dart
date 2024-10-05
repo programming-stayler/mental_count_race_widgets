@@ -35,7 +35,7 @@ class _PlayerAnswersGraphicState extends State<PlayerAnswersGraphic> {
         AppPadding.verticalPadding16,
         CarouselSlider.builder(
           itemBuilder: (context, index, _) {
-            final answer = widget.answers[selectedIndex];
+            final answer = widget.answers[index];
             return Row(
               children: [
                 AppText(

@@ -31,16 +31,19 @@ class _ExpressionViewerScreenState extends State<ExpressionViewerGuideScreen> {
 
     controller = ExpressionViewerController(
       initExpressions: List.generate(
-        20,
+        10,
         (index) => builder.generateExpressionModel(
           index,
         )!,
       ),
-      fakeItems: [
+      startItems: [
         const ExpressionTextModel.fake(string: ''),
         const ExpressionTextModel.fake(string: '3', color: Colors.red),
         const ExpressionTextModel.fake(string: '2', color: Colors.orangeAccent),
         const ExpressionTextModel.fake(string: '1', color: Colors.green),
+      ],
+      endItems: [
+        const ExpressionTextModel.fake(string: ''),
       ],
     );
   }

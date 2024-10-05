@@ -3,21 +3,45 @@ import 'package:mental_count_race_widgets/widgets.dart';
 import 'package:pythagoras/pythagoras.dart';
 
 class ExpressionViewerController {
-  int _currentFakeItemIndex = 0;
+  int _currentStartItemIndex = 0;
   int _currentExpressionIndex = 0;
-  final _fakeItems = <ExpressionTextModel>[];
+  int _currentEndItemIndex = 0;
+  final _startItems = <ExpressionTextModel>[];
   final _expressions = <ExpressionTextModel>[];
+  final _endItems = <ExpressionTextModel>[];
   final carouselController = CarouselSliderController();
 
+  int get currentIndex {
+    return _currentStartItemIndex +
+        _currentExpressionIndex +
+        _currentEndItemIndex;
+  }
+
+  int get fakeItemsCount {
+    return _startItems.length;
+  }
+
+  int get expressionsCount {
+    return _expressions.length;
+  }
+
+  List<ExpressionTextModel> get allItems {
+    return [
+      ..._startItems,
+      ..._expressions,
+      ..._endItems,
+    ];
+  }
+
   ExpressionTextModel? get currentItem {
-    return _fakeItemByIndex(_currentFakeItemIndex) ??
+    return _endItemByIndex(_currentStartItemIndex) ??
         _expressionByIndex(_currentExpressionIndex);
   }
 
   ExpressionTextModel? get nextItem {
-    final nextFake = _fakeItemByIndex(_currentFakeItemIndex + 1);
+    final nextFake = _endItemByIndex(_currentStartItemIndex + 1);
     if (nextFake == null) {
-      final currentFake = _fakeItemByIndex(_currentFakeItemIndex);
+      final currentFake = _endItemByIndex(_currentStartItemIndex);
       final nextExpr = _expressionByIndex(_currentExpressionIndex + 1);
       if (currentFake == null) {
         return nextExpr;
@@ -29,14 +53,14 @@ class ExpressionViewerController {
 
   ExpressionViewerController({
     List<ExpressionModel> initExpressions = const [],
-    List<ExpressionTextModel> fakeItems = const [],
+    List<ExpressionTextModel> startItems = const [],
+    List<ExpressionTextModel> endItems = const [],
   }) {
     _expressions.addAll(
       initExpressions.map((e) => ExpressionTextModel.expression(expression: e)),
     );
-    _fakeItems.addAll(
-      fakeItems,
-    );
+    _startItems.addAll(startItems);
+    _endItems.addAll(endItems);
   }
 
   void addExpression(ExpressionModel expression) {
@@ -55,22 +79,24 @@ class ExpressionViewerController {
         milliseconds: 150,
       ),
     );
+    incrementItemIndex();
   }
 
   void incrementItemIndex() {
-    carouselController.jumpToPage(0);
-    if (_currentFakeItemIndex < _fakeItems.length) {
-      _currentFakeItemIndex += 1;
-    } else {
+    if (_currentStartItemIndex < _startItems.length) {
+      _currentStartItemIndex += 1;
+    } else if (_currentExpressionIndex < _expressions.length) {
       _currentExpressionIndex += 1;
+    } else {
+      _currentEndItemIndex += 1;
     }
   }
 
-  ExpressionTextModel? _fakeItemByIndex(int index) {
-    if (index >= _fakeItems.length) {
+  ExpressionTextModel? _endItemByIndex(int index) {
+    if (index >= _startItems.length) {
       return null;
     }
-    return _fakeItems[index];
+    return _startItems[index];
   }
 
   ExpressionTextModel? _expressionByIndex(int index) {

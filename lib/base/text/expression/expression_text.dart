@@ -22,6 +22,7 @@ class ExpressionText extends StatelessWidget {
     final selectedTextStyle = style.textStyle.semiBoldFont.numberTitle.copyWith(
       colorHex: '343434',
     );
+    final resultSelected = selected != null && selected!;
     return Container(
       constraints: BoxConstraints(
         minWidth: 24.toWidth,
@@ -29,7 +30,7 @@ class ExpressionText extends StatelessWidget {
       child: AppText(
         model.title,
         textAlign: TextAlign.center,
-        uiStyle: selected == null || selected! ? selectedTextStyle : textStyle,
+        uiStyle: resultSelected ? selectedTextStyle : textStyle,
       ),
     );
   }

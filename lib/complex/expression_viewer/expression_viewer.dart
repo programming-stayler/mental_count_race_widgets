@@ -1,5 +1,7 @@
+import 'package:collection/collection.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:mental_count_race_widgets/widgets.dart';
 
 export 'controller.dart';
@@ -21,27 +23,32 @@ class _ExpressionViewerState extends State<ExpressionViewer> {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        final currentExpression = widget.controller.currentItem;
-        final nextExpression = widget.controller.nextItem;
         final widgetHeight = 100.toHeight;
         final shadowOffset = widgetHeight / 2;
         final items = <Widget>[];
-        if (currentExpression != null) {
-          items.add(
-            ExpressionText(
-              model: currentExpression,
-              selected: true,
-            ),
-          );
-        }
-        if (nextExpression != null) {
-          items.add(
-            ExpressionText(
-              model: nextExpression,
-              selected: false,
-            ),
-          );
-        }
+        final allItems = widget.controller.allItems;
+        final currentIndex = widget.controller.currentIndex;
+        items.addAll(
+          allItems.mapIndexed((index, item) {
+            final opacity = index >= currentIndex ? 1.0 : 0.0;
+            final child = ExpressionText(
+              model: item,
+              selected: index == currentIndex,
+            );
+            if (index <= widget.controller.fakeItemsCount) {
+              return Opacity(
+                opacity: opacity,
+                child: child,
+              );
+            }
+            return AnimatedOpacity(
+              key: ValueKey(index),
+              duration: 250.milliseconds,
+              opacity: opacity,
+              child: child,
+            );
+          }),
+        );
         final style = AppGlobalStyle.of(context).style;
         final bgColor = style.screenBGColorHex.color;
         final controller = widget.controller;
@@ -60,16 +67,13 @@ class _ExpressionViewerState extends State<ExpressionViewer> {
                 options: _CarouselOptions(
                   viewportFraction: fraction,
                   onPageChanged: (index, _) {
-                    if (index % 2 != 0) {
-                      Future.delayed(const Duration(milliseconds: 100)).then(
-                        (_) {
-                          if (mounted) {
-                            setState(
-                              () => widget.controller.incrementItemIndex(),
-                            );
-                          }
-                        },
+                    final fakeCount = widget.controller.fakeItemsCount;
+                    if (index == fakeCount) {
+                      Future.delayed(100.milliseconds).then(
+                        (_) => setState(() {}),
                       );
+                    } else {
+                      setState(() {});
                     }
                   },
                 ),
