@@ -18,6 +18,8 @@ _$AppStyleSystemImpl _$$AppStyleSystemImplFromJson(Map<String, dynamic> json) =>
       borderColorHex: json['borderColorHex'] as String,
       containerStyle: ContainerUIStyle.fromJson(
           json['containerStyle'] as Map<String, dynamic>),
+      menuSectionStyle: ContainerUIStyle.fromJson(
+          json['menuSectionStyle'] as Map<String, dynamic>),
       actionButtonsStyle: BoxDecorationUIStyle.fromJson(
           json['actionButtonsStyle'] as Map<String, dynamic>),
       appSheetStyle: BoxDecorationUIStyle.fromJson(
@@ -40,6 +42,7 @@ Map<String, dynamic> _$$AppStyleSystemImplToJson(
       'neutralColorHex': instance.neutralColorHex,
       'borderColorHex': instance.borderColorHex,
       'containerStyle': instance.containerStyle,
+      'menuSectionStyle': instance.menuSectionStyle,
       'actionButtonsStyle': instance.actionButtonsStyle,
       'appSheetStyle': instance.appSheetStyle,
       'keyboardRegularStyle': instance.keyboardRegularStyle,

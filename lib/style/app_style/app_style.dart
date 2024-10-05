@@ -19,6 +19,7 @@ class AppStyleSystem with _$AppStyleSystem {
     required String neutralColorHex,
     required String borderColorHex,
     required ContainerUIStyle containerStyle,
+    required ContainerUIStyle menuSectionStyle,
     required BoxDecorationUIStyle actionButtonsStyle,
     required BoxDecorationUIStyle appSheetStyle,
     required ContainerUIStyle keyboardRegularStyle,
@@ -40,6 +41,7 @@ final neuBrutalism = () {
   const borderColor = '343434';
   const actionColor = 'F3B048';
   const screenColor = 'EAEAEA';
+  const appSheetBGColor = 'FEFCF6';
   const appSheetBorderColor = '787875';
   const offset = OffsetUIStyle(
     dx: 4,
@@ -66,6 +68,15 @@ final neuBrutalism = () {
     boxShadow: [boxShadow],
     colorHex: actionColor,
   );
+  const containerStyle = ContainerUIStyle(
+    padding: EdgeInsetsUIStyle(
+      left: 12,
+      right: 12,
+      top: 8,
+      bottom: 8,
+    ),
+    decoration: decoratedBox,
+  );
   return AppStyleSystem(
     fontFamily: 'Popins',
     actionColorHex: actionColor,
@@ -75,27 +86,28 @@ final neuBrutalism = () {
     negativeColorHex: 'E37965',
     neutralColorHex: '808285',
     borderColorHex: borderColor,
-    containerStyle: const ContainerUIStyle(
-      padding: EdgeInsetsUIStyle(
-        left: 12,
-        right: 12,
-        top: 8,
-        bottom: 8,
+    containerStyle: containerStyle,
+    menuSectionStyle: containerStyle.copyWith(
+      decoration: decoratedBox.copyWith(
+        colorHex: appSheetBGColor,
       ),
-      decoration: decoratedBox,
     ),
     actionButtonsStyle: decoratedBox.copyWith(
       borderRadius: const BorderRadiusUIStyle.circular(22),
       border: border,
     ),
     appSheetStyle: decoratedBox.copyWith(
-      colorHex: 'FEFCF6',
-      borderRadius: const BorderRadiusUIStyle.circular(
-        24,
-      ),
+      colorHex: appSheetBGColor,
+      borderRadius: const BorderRadiusUIStyle.circular(24),
       border: border.copyWith(
-        left: border.left?.copyWith(colorHex: appSheetBorderColor, width: 1.5),
-        right: border.right?.copyWith(colorHex: appSheetBorderColor, width: 1.5),
+        left: border.left?.copyWith(
+          colorHex: appSheetBorderColor,
+          width: 1.5,
+        ),
+        right: border.right?.copyWith(
+          colorHex: appSheetBorderColor,
+          width: 1.5,
+        ),
         top: border.top?.copyWith(colorHex: appSheetBorderColor),
         bottom: border.bottom?.copyWith(colorHex: appSheetBorderColor),
       ),

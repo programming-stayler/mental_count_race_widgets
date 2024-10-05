@@ -29,6 +29,7 @@ mixin _$AppStyleSystem {
   String get neutralColorHex => throw _privateConstructorUsedError;
   String get borderColorHex => throw _privateConstructorUsedError;
   ContainerUIStyle get containerStyle => throw _privateConstructorUsedError;
+  ContainerUIStyle get menuSectionStyle => throw _privateConstructorUsedError;
   BoxDecorationUIStyle get actionButtonsStyle =>
       throw _privateConstructorUsedError;
   BoxDecorationUIStyle get appSheetStyle => throw _privateConstructorUsedError;
@@ -63,12 +64,14 @@ abstract class $AppStyleSystemCopyWith<$Res> {
       String neutralColorHex,
       String borderColorHex,
       ContainerUIStyle containerStyle,
+      ContainerUIStyle menuSectionStyle,
       BoxDecorationUIStyle actionButtonsStyle,
       BoxDecorationUIStyle appSheetStyle,
       ContainerUIStyle keyboardRegularStyle,
       ContainerUIStyle keyboardActionStyle});
 
   $ContainerUIStyleCopyWith<$Res> get containerStyle;
+  $ContainerUIStyleCopyWith<$Res> get menuSectionStyle;
   $BoxDecorationUIStyleCopyWith<$Res> get actionButtonsStyle;
   $BoxDecorationUIStyleCopyWith<$Res> get appSheetStyle;
   $ContainerUIStyleCopyWith<$Res> get keyboardRegularStyle;
@@ -99,6 +102,7 @@ class _$AppStyleSystemCopyWithImpl<$Res, $Val extends AppStyleSystem>
     Object? neutralColorHex = null,
     Object? borderColorHex = null,
     Object? containerStyle = null,
+    Object? menuSectionStyle = null,
     Object? actionButtonsStyle = null,
     Object? appSheetStyle = null,
     Object? keyboardRegularStyle = null,
@@ -141,6 +145,10 @@ class _$AppStyleSystemCopyWithImpl<$Res, $Val extends AppStyleSystem>
           ? _value.containerStyle
           : containerStyle // ignore: cast_nullable_to_non_nullable
               as ContainerUIStyle,
+      menuSectionStyle: null == menuSectionStyle
+          ? _value.menuSectionStyle
+          : menuSectionStyle // ignore: cast_nullable_to_non_nullable
+              as ContainerUIStyle,
       actionButtonsStyle: null == actionButtonsStyle
           ? _value.actionButtonsStyle
           : actionButtonsStyle // ignore: cast_nullable_to_non_nullable
@@ -167,6 +175,16 @@ class _$AppStyleSystemCopyWithImpl<$Res, $Val extends AppStyleSystem>
   $ContainerUIStyleCopyWith<$Res> get containerStyle {
     return $ContainerUIStyleCopyWith<$Res>(_value.containerStyle, (value) {
       return _then(_value.copyWith(containerStyle: value) as $Val);
+    });
+  }
+
+  /// Create a copy of AppStyleSystem
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ContainerUIStyleCopyWith<$Res> get menuSectionStyle {
+    return $ContainerUIStyleCopyWith<$Res>(_value.menuSectionStyle, (value) {
+      return _then(_value.copyWith(menuSectionStyle: value) as $Val);
     });
   }
 
@@ -231,6 +249,7 @@ abstract class _$$AppStyleSystemImplCopyWith<$Res>
       String neutralColorHex,
       String borderColorHex,
       ContainerUIStyle containerStyle,
+      ContainerUIStyle menuSectionStyle,
       BoxDecorationUIStyle actionButtonsStyle,
       BoxDecorationUIStyle appSheetStyle,
       ContainerUIStyle keyboardRegularStyle,
@@ -238,6 +257,8 @@ abstract class _$$AppStyleSystemImplCopyWith<$Res>
 
   @override
   $ContainerUIStyleCopyWith<$Res> get containerStyle;
+  @override
+  $ContainerUIStyleCopyWith<$Res> get menuSectionStyle;
   @override
   $BoxDecorationUIStyleCopyWith<$Res> get actionButtonsStyle;
   @override
@@ -270,6 +291,7 @@ class __$$AppStyleSystemImplCopyWithImpl<$Res>
     Object? neutralColorHex = null,
     Object? borderColorHex = null,
     Object? containerStyle = null,
+    Object? menuSectionStyle = null,
     Object? actionButtonsStyle = null,
     Object? appSheetStyle = null,
     Object? keyboardRegularStyle = null,
@@ -312,6 +334,10 @@ class __$$AppStyleSystemImplCopyWithImpl<$Res>
           ? _value.containerStyle
           : containerStyle // ignore: cast_nullable_to_non_nullable
               as ContainerUIStyle,
+      menuSectionStyle: null == menuSectionStyle
+          ? _value.menuSectionStyle
+          : menuSectionStyle // ignore: cast_nullable_to_non_nullable
+              as ContainerUIStyle,
       actionButtonsStyle: null == actionButtonsStyle
           ? _value.actionButtonsStyle
           : actionButtonsStyle // ignore: cast_nullable_to_non_nullable
@@ -345,6 +371,7 @@ class _$AppStyleSystemImpl implements _AppStyleSystem {
       required this.neutralColorHex,
       required this.borderColorHex,
       required this.containerStyle,
+      required this.menuSectionStyle,
       required this.actionButtonsStyle,
       required this.appSheetStyle,
       required this.keyboardRegularStyle,
@@ -372,6 +399,8 @@ class _$AppStyleSystemImpl implements _AppStyleSystem {
   @override
   final ContainerUIStyle containerStyle;
   @override
+  final ContainerUIStyle menuSectionStyle;
+  @override
   final BoxDecorationUIStyle actionButtonsStyle;
   @override
   final BoxDecorationUIStyle appSheetStyle;
@@ -382,7 +411,7 @@ class _$AppStyleSystemImpl implements _AppStyleSystem {
 
   @override
   String toString() {
-    return 'AppStyleSystem(fontFamily: $fontFamily, actionColorHex: $actionColorHex, screenBGColorHex: $screenBGColorHex, desaturatedColorHex: $desaturatedColorHex, positiveColorHex: $positiveColorHex, negativeColorHex: $negativeColorHex, neutralColorHex: $neutralColorHex, borderColorHex: $borderColorHex, containerStyle: $containerStyle, actionButtonsStyle: $actionButtonsStyle, appSheetStyle: $appSheetStyle, keyboardRegularStyle: $keyboardRegularStyle, keyboardActionStyle: $keyboardActionStyle)';
+    return 'AppStyleSystem(fontFamily: $fontFamily, actionColorHex: $actionColorHex, screenBGColorHex: $screenBGColorHex, desaturatedColorHex: $desaturatedColorHex, positiveColorHex: $positiveColorHex, negativeColorHex: $negativeColorHex, neutralColorHex: $neutralColorHex, borderColorHex: $borderColorHex, containerStyle: $containerStyle, menuSectionStyle: $menuSectionStyle, actionButtonsStyle: $actionButtonsStyle, appSheetStyle: $appSheetStyle, keyboardRegularStyle: $keyboardRegularStyle, keyboardActionStyle: $keyboardActionStyle)';
   }
 
   @override
@@ -408,6 +437,8 @@ class _$AppStyleSystemImpl implements _AppStyleSystem {
                 other.borderColorHex == borderColorHex) &&
             (identical(other.containerStyle, containerStyle) ||
                 other.containerStyle == containerStyle) &&
+            (identical(other.menuSectionStyle, menuSectionStyle) ||
+                other.menuSectionStyle == menuSectionStyle) &&
             (identical(other.actionButtonsStyle, actionButtonsStyle) ||
                 other.actionButtonsStyle == actionButtonsStyle) &&
             (identical(other.appSheetStyle, appSheetStyle) ||
@@ -431,6 +462,7 @@ class _$AppStyleSystemImpl implements _AppStyleSystem {
       neutralColorHex,
       borderColorHex,
       containerStyle,
+      menuSectionStyle,
       actionButtonsStyle,
       appSheetStyle,
       keyboardRegularStyle,
@@ -464,6 +496,7 @@ abstract class _AppStyleSystem implements AppStyleSystem {
           required final String neutralColorHex,
           required final String borderColorHex,
           required final ContainerUIStyle containerStyle,
+          required final ContainerUIStyle menuSectionStyle,
           required final BoxDecorationUIStyle actionButtonsStyle,
           required final BoxDecorationUIStyle appSheetStyle,
           required final ContainerUIStyle keyboardRegularStyle,
@@ -491,6 +524,8 @@ abstract class _AppStyleSystem implements AppStyleSystem {
   String get borderColorHex;
   @override
   ContainerUIStyle get containerStyle;
+  @override
+  ContainerUIStyle get menuSectionStyle;
   @override
   BoxDecorationUIStyle get actionButtonsStyle;
   @override
