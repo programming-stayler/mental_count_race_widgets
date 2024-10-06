@@ -8,10 +8,12 @@ export 'controller.dart';
 
 class ExpressionViewer extends StatefulWidget {
   final ExpressionViewerController controller;
+  final double? fraction;
 
   const ExpressionViewer({
     super.key,
     required this.controller,
+    this.fraction,
   });
 
   @override
@@ -35,7 +37,7 @@ class _ExpressionViewerState extends State<ExpressionViewer> {
               model: item,
               selected: index == currentIndex,
             );
-            if (index <= widget.controller.fakeItemsCount) {
+            if (index <= widget.controller.startItemsCount) {
               return Opacity(
                 opacity: opacity,
                 child: child,
@@ -52,12 +54,12 @@ class _ExpressionViewerState extends State<ExpressionViewer> {
         final style = AppGlobalStyle.of(context).style;
         final bgColor = style.screenBGColorHex.color;
         final controller = widget.controller;
-        final fraction = controller.currentItem?.map(
+        final fraction = widget.fraction ??
+            controller.currentItem?.map(
               fake: (_) => 0.65,
               expression: (_) => 0.3,
               expressionAnswer: (_) => 0.55,
-            ) ??
-            0.65;
+            );
         return AbsorbPointer(
           child: Stack(
             children: [
@@ -65,9 +67,9 @@ class _ExpressionViewerState extends State<ExpressionViewer> {
                 items: items,
                 carouselController: controller.carouselController,
                 options: _CarouselOptions(
-                  viewportFraction: fraction,
+                  viewportFraction: fraction ?? 0.65,
                   onPageChanged: (index, _) {
-                    final fakeCount = widget.controller.fakeItemsCount;
+                    final fakeCount = widget.controller.startItemsCount;
                     if (index == fakeCount) {
                       Future.delayed(100.milliseconds).then(
                         (_) => setState(() {}),

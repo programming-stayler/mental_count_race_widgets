@@ -17,7 +17,7 @@ class ExpressionViewerController {
         _currentEndItemIndex;
   }
 
-  int get fakeItemsCount {
+  int get startItemsCount {
     return _startItems.length;
   }
 
@@ -52,12 +52,12 @@ class ExpressionViewerController {
   }
 
   ExpressionViewerController({
-    List<ExpressionModel> initExpressions = const [],
+    List<ExpressionModel> expressions = const [],
     List<ExpressionTextModel> startItems = const [],
     List<ExpressionTextModel> endItems = const [],
   }) {
     _expressions.addAll(
-      initExpressions.map((e) => ExpressionTextModel.expression(expression: e)),
+      expressions.map((e) => ExpressionTextModel.expression(expression: e)),
     );
     _startItems.addAll(startItems);
     _endItems.addAll(endItems);

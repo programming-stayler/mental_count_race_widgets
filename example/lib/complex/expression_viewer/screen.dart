@@ -22,29 +22,31 @@ class ExpressionViewerGuideScreen extends StatefulWidget {
 }
 
 class _ExpressionViewerScreenState extends State<ExpressionViewerGuideScreen> {
-  late ExpressionViewerController controller;
+  final ExpressionViewerController fakeController = ExpressionViewerController(
+    startItems: [
+      const ExpressionTextModel.fake(string: ''),
+      const ExpressionTextModel.fake(string: '3', color: Colors.red),
+      const ExpressionTextModel.fake(string: '2', color: Colors.orangeAccent),
+      const ExpressionTextModel.fake(string: '1', color: Colors.green),
+    ],
+    endItems: [
+      const ExpressionTextModel.fake(string: ''),
+    ],
+  );
+  late ExpressionViewerController realController;
 
   @override
   void initState() {
     super.initState();
     final builder = ExpressionBuilder.fromPattern(pattern: '[x]#[+]#[x]');
-
-    controller = ExpressionViewerController(
-      initExpressions: List.generate(
-        10,
-        (index) => builder.generateExpressionModel(
-          index,
-        )!,
-      ),
-      startItems: [
-        const ExpressionTextModel.fake(string: ''),
-        const ExpressionTextModel.fake(string: '3', color: Colors.red),
-        const ExpressionTextModel.fake(string: '2', color: Colors.orangeAccent),
-        const ExpressionTextModel.fake(string: '1', color: Colors.green),
-      ],
-      endItems: [
-        const ExpressionTextModel.fake(string: ''),
-      ],
+    final expressions = List.generate(
+      10,
+      (index) => builder.generateExpressionModel(index)!,
+    );
+    realController = ExpressionViewerController(
+      startItems: [const ExpressionTextModel.fake(string: '')],
+      expressions: expressions,
+      endItems: [const ExpressionTextModel.fake(string: '')],
     );
   }
 
@@ -62,10 +64,19 @@ class _ExpressionViewerScreenState extends State<ExpressionViewerGuideScreen> {
       ],
       bodyChildren: [
         AppPadding.verticalPadding16,
-        AppPadding.horizontalWrapper16(
-          child: ExpressionViewer(
-            controller: controller,
-          ),
+        Row(
+          children: [
+            Expanded(
+              child: ExpressionViewer(
+                controller: fakeController,
+              ),
+            ),
+            Expanded(
+              child: ExpressionViewer(
+                controller: realController,
+              ),
+            ),
+          ],
         ),
         AppPadding.verticalPadding16,
       ],
@@ -75,11 +86,22 @@ class _ExpressionViewerScreenState extends State<ExpressionViewerGuideScreen> {
           child: AppActionButton(
             text: 'Next',
             textStyle: globalStyle.textStyle.semiBoldFont.buttonTitle,
-            onTap: controller.moveToNext,
+            onTap: nextTapped,
           ),
         ),
         AppPadding.verticalPadding16,
       ],
     );
+  }
+
+  void nextTapped() {
+    if (fakeController.currentIndex < fakeController.startItemsCount) {
+      fakeController.moveToNext();
+      if (fakeController.currentIndex == fakeController.startItemsCount) {
+        realController.moveToNext();
+      }
+    } else {
+      realController.moveToNext();
+    }
   }
 }
