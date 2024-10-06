@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mental_count_race_widgets/widgets.dart';
 
+import 'animation/screen.dart';
 import 'app_sheet/screen.dart';
 import 'charts/screen.dart';
 import 'expression_viewer/screen.dart';
@@ -40,6 +41,17 @@ class _ComplexGuideScreenState extends State<ComplexGuideScreen> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const Spacer(),
+            InkWell(
+              child: AppText(
+                'Animation',
+                textAlign: TextAlign.center,
+                uiStyle: style.textStyle.boldFont.simple,
+              ),
+              onTap: () => Navigator.of(context).push(
+                AnimationGuideScreen.getRoute(),
+              ),
+            ),
+            AppPadding.verticalPadding32,
             InkWell(
               child: AppText(
                 'App Sheet',

@@ -5,12 +5,14 @@ class ShadowWrapper extends StatelessWidget {
   final Widget child;
   final Axis axis;
   final Color color;
+  final double? size;
 
   const ShadowWrapper({
     super.key,
     required this.child,
     required this.color,
     this.axis = Axis.horizontal,
+    this.size,
   });
 
   @override
@@ -32,7 +34,7 @@ class ShadowWrapper extends StatelessWidget {
           case Axis.horizontal:
             children.addAll([
               LeftPositioned(
-                width: constraints.maxWidth / 5,
+                width: size ?? constraints.maxWidth / 5,
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: const BorderRadius.horizontal(
@@ -45,7 +47,7 @@ class ShadowWrapper extends StatelessWidget {
                 ),
               ),
               RightPositioned(
-                width: constraints.maxWidth / 5,
+                width: size ?? constraints.maxWidth / 5,
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: const BorderRadius.horizontal(
@@ -65,7 +67,7 @@ class ShadowWrapper extends StatelessWidget {
             final shadowOffset = 24.toHeight;
             children.addAll([
               TopPositioned(
-                height: shadowOffset,
+                height: size ?? shadowOffset,
                 child: Container(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
@@ -77,7 +79,7 @@ class ShadowWrapper extends StatelessWidget {
                 ),
               ),
               BottomPositioned(
-                height: shadowOffset,
+                height: size ?? shadowOffset,
                 child: Container(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
