@@ -198,6 +198,7 @@ class AnimatedAppSheetScaffold extends StatefulWidget {
   final List<Widget> bodyChildren;
   final List<Widget> bottomChildren;
   final AnimationController? controller;
+  final Duration? duration;
 
   const AnimatedAppSheetScaffold({
     super.key,
@@ -205,6 +206,7 @@ class AnimatedAppSheetScaffold extends StatefulWidget {
     required this.bodyChildren,
     this.bottomChildren = const [],
     this.controller,
+    this.duration,
   });
 
   @override
@@ -253,7 +255,7 @@ class _AnimatedAppSheetScaffoldState extends State<AnimatedAppSheetScaffold>
             if (showBody)
               AnimatedColumn(
                 key: GlobalKey(),
-                duration: 650.milliseconds,
+                duration: widget.duration ?? 650.milliseconds,
                 children: widget.bodyChildren,
               ),
             if (!showBody) const Spacer(),

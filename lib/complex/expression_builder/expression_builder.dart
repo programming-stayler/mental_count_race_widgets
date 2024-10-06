@@ -5,10 +5,12 @@ export 'controller.dart';
 
 class ExpressionBuilderWidget extends StatefulWidget {
   final ExpressionBuilderController controller;
+  final Color? color;
 
   const ExpressionBuilderWidget({
     super.key,
     required this.controller,
+    this.color,
   });
 
   @override
@@ -25,7 +27,7 @@ class _ExpressionBuilderWidgetState extends State<ExpressionBuilderWidget> {
     while (i < comps.length) {
       if (i < minComponentsCount) {
         final comp = comps[i];
-        children.add(ExpressionPartPicker(vm: comp));
+        children.add(ExpressionPartPicker(vm: comp, color: widget.color));
         i += 1;
       } else {
         final compOperation = comps[i];
@@ -37,8 +39,8 @@ class _ExpressionBuilderWidgetState extends State<ExpressionBuilderWidget> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                ExpressionPartPicker(vm: compOperation),
-                ExpressionPartPicker(vm: compNum),
+                ExpressionPartPicker(vm: compOperation, color: widget.color),
+                ExpressionPartPicker(vm: compNum, color: widget.color),
               ],
             ),
             onPressed: (index) {
