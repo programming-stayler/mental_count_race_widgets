@@ -4,6 +4,7 @@ import 'package:mental_count_race_widgets/widgets.dart';
 import 'package:pythagoras/pythagoras.dart';
 
 part 'models.freezed.dart';
+
 part 'models.g.dart';
 
 const cNumberKeyboardSize = 52;
@@ -72,8 +73,8 @@ class KeyboardMode with _$KeyboardMode {
   const factory KeyboardMode.answer({
     required KeyboardSettings settings,
     required String answer,
-    required ExpressionViewerController controller,
+    ExpressionViewerController? controller,
     required ValueChanged<String> onAnswerChanged,
-    required Function(ExpressionModel, int) onAnswerGiven,
+    Function(ExpressionModel, int)? onAnswerGiven,
   }) = _Answer;
 }

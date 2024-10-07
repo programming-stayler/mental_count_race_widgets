@@ -117,15 +117,18 @@ class MatchKeyboard extends StatelessWidget {
           symbol: (symbol) {
             final answerString = '${mode.answer}${symbol.text}';
             mode.onAnswerChanged(answerString);
-            final expression = mode.controller.currentItem;
-            expression?.whenOrNull(
-              expression: (expression, _) {
-                final answer = int.tryParse(answerString);
-                if (answer != null && expression.result == answer) {
-                  mode.onAnswerGiven(expression, answer);
-                }
-              },
-            );
+            final controller = mode.controller;
+            if (controller != null) {
+              final expression = controller.currentItem;
+              expression?.whenOrNull(
+                expression: (expression, _) {
+                  final answer = int.tryParse(answerString);
+                  if (answer != null && expression.result == answer) {
+                    mode.onAnswerGiven?.call(expression, answer);
+                  }
+                },
+              );
+            }
           },
           action: (action) {
             switch (action.action) {
@@ -137,15 +140,18 @@ class MatchKeyboard extends StatelessWidget {
                 }
                 break;
               case KeyAction.answer:
-                final expression = mode.controller.currentItem;
-                expression?.whenOrNull(
-                  expression: (expression, _) {
-                    final answer = int.tryParse(mode.answer);
-                    if (answer != null) {
-                      mode.onAnswerGiven(expression, answer);
-                    }
-                  },
-                );
+                final controller = mode.controller;
+                if (controller != null) {
+                  final expression = controller.currentItem;
+                  expression?.whenOrNull(
+                    expression: (expression, _) {
+                      final answer = int.tryParse(mode.answer);
+                      if (answer != null) {
+                        mode.onAnswerGiven?.call(expression, answer);
+                      }
+                    },
+                  );
+                }
                 break;
               case KeyAction.minus:
                 mode.onAnswerChanged(

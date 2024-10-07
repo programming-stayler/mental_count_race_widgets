@@ -751,9 +751,9 @@ mixin _$KeyboardMode {
     required TResult Function(
             KeyboardSettings settings,
             String answer,
-            ExpressionViewerController controller,
+            ExpressionViewerController? controller,
             ValueChanged<String> onAnswerChanged,
-            dynamic Function(ExpressionModel, int) onAnswerGiven)
+            dynamic Function(ExpressionModel, int)? onAnswerGiven)
         answer,
   }) =>
       throw _privateConstructorUsedError;
@@ -765,9 +765,9 @@ mixin _$KeyboardMode {
     TResult? Function(
             KeyboardSettings settings,
             String answer,
-            ExpressionViewerController controller,
+            ExpressionViewerController? controller,
             ValueChanged<String> onAnswerChanged,
-            dynamic Function(ExpressionModel, int) onAnswerGiven)?
+            dynamic Function(ExpressionModel, int)? onAnswerGiven)?
         answer,
   }) =>
       throw _privateConstructorUsedError;
@@ -779,9 +779,9 @@ mixin _$KeyboardMode {
     TResult Function(
             KeyboardSettings settings,
             String answer,
-            ExpressionViewerController controller,
+            ExpressionViewerController? controller,
             ValueChanged<String> onAnswerChanged,
-            dynamic Function(ExpressionModel, int) onAnswerGiven)?
+            dynamic Function(ExpressionModel, int)? onAnswerGiven)?
         answer,
     required TResult orElse(),
   }) =>
@@ -946,9 +946,9 @@ class _$KeyImpl implements _Key {
     required TResult Function(
             KeyboardSettings settings,
             String answer,
-            ExpressionViewerController controller,
+            ExpressionViewerController? controller,
             ValueChanged<String> onAnswerChanged,
-            dynamic Function(ExpressionModel, int) onAnswerGiven)
+            dynamic Function(ExpressionModel, int)? onAnswerGiven)
         answer,
   }) {
     return key(settings, onKeyPressed);
@@ -963,9 +963,9 @@ class _$KeyImpl implements _Key {
     TResult? Function(
             KeyboardSettings settings,
             String answer,
-            ExpressionViewerController controller,
+            ExpressionViewerController? controller,
             ValueChanged<String> onAnswerChanged,
-            dynamic Function(ExpressionModel, int) onAnswerGiven)?
+            dynamic Function(ExpressionModel, int)? onAnswerGiven)?
         answer,
   }) {
     return key?.call(settings, onKeyPressed);
@@ -980,9 +980,9 @@ class _$KeyImpl implements _Key {
     TResult Function(
             KeyboardSettings settings,
             String answer,
-            ExpressionViewerController controller,
+            ExpressionViewerController? controller,
             ValueChanged<String> onAnswerChanged,
-            dynamic Function(ExpressionModel, int) onAnswerGiven)?
+            dynamic Function(ExpressionModel, int)? onAnswerGiven)?
         answer,
     required TResult orElse(),
   }) {
@@ -1052,9 +1052,9 @@ abstract class _$$AnswerImplCopyWith<$Res>
   $Res call(
       {KeyboardSettings settings,
       String answer,
-      ExpressionViewerController controller,
+      ExpressionViewerController? controller,
       ValueChanged<String> onAnswerChanged,
-      dynamic Function(ExpressionModel, int) onAnswerGiven});
+      dynamic Function(ExpressionModel, int)? onAnswerGiven});
 
   @override
   $KeyboardSettingsCopyWith<$Res> get settings;
@@ -1075,9 +1075,9 @@ class __$$AnswerImplCopyWithImpl<$Res>
   $Res call({
     Object? settings = null,
     Object? answer = null,
-    Object? controller = null,
+    Object? controller = freezed,
     Object? onAnswerChanged = null,
-    Object? onAnswerGiven = null,
+    Object? onAnswerGiven = freezed,
   }) {
     return _then(_$AnswerImpl(
       settings: null == settings
@@ -1088,18 +1088,18 @@ class __$$AnswerImplCopyWithImpl<$Res>
           ? _value.answer
           : answer // ignore: cast_nullable_to_non_nullable
               as String,
-      controller: null == controller
+      controller: freezed == controller
           ? _value.controller
           : controller // ignore: cast_nullable_to_non_nullable
-              as ExpressionViewerController,
+              as ExpressionViewerController?,
       onAnswerChanged: null == onAnswerChanged
           ? _value.onAnswerChanged
           : onAnswerChanged // ignore: cast_nullable_to_non_nullable
               as ValueChanged<String>,
-      onAnswerGiven: null == onAnswerGiven
+      onAnswerGiven: freezed == onAnswerGiven
           ? _value.onAnswerGiven
           : onAnswerGiven // ignore: cast_nullable_to_non_nullable
-              as dynamic Function(ExpressionModel, int),
+              as dynamic Function(ExpressionModel, int)?,
     ));
   }
 }
@@ -1110,20 +1110,20 @@ class _$AnswerImpl implements _Answer {
   const _$AnswerImpl(
       {required this.settings,
       required this.answer,
-      required this.controller,
+      this.controller,
       required this.onAnswerChanged,
-      required this.onAnswerGiven});
+      this.onAnswerGiven});
 
   @override
   final KeyboardSettings settings;
   @override
   final String answer;
   @override
-  final ExpressionViewerController controller;
+  final ExpressionViewerController? controller;
   @override
   final ValueChanged<String> onAnswerChanged;
   @override
-  final dynamic Function(ExpressionModel, int) onAnswerGiven;
+  final dynamic Function(ExpressionModel, int)? onAnswerGiven;
 
   @override
   String toString() {
@@ -1167,9 +1167,9 @@ class _$AnswerImpl implements _Answer {
     required TResult Function(
             KeyboardSettings settings,
             String answer,
-            ExpressionViewerController controller,
+            ExpressionViewerController? controller,
             ValueChanged<String> onAnswerChanged,
-            dynamic Function(ExpressionModel, int) onAnswerGiven)
+            dynamic Function(ExpressionModel, int)? onAnswerGiven)
         answer,
   }) {
     return answer(
@@ -1185,9 +1185,9 @@ class _$AnswerImpl implements _Answer {
     TResult? Function(
             KeyboardSettings settings,
             String answer,
-            ExpressionViewerController controller,
+            ExpressionViewerController? controller,
             ValueChanged<String> onAnswerChanged,
-            dynamic Function(ExpressionModel, int) onAnswerGiven)?
+            dynamic Function(ExpressionModel, int)? onAnswerGiven)?
         answer,
   }) {
     return answer?.call(
@@ -1203,9 +1203,9 @@ class _$AnswerImpl implements _Answer {
     TResult Function(
             KeyboardSettings settings,
             String answer,
-            ExpressionViewerController controller,
+            ExpressionViewerController? controller,
             ValueChanged<String> onAnswerChanged,
-            dynamic Function(ExpressionModel, int) onAnswerGiven)?
+            dynamic Function(ExpressionModel, int)? onAnswerGiven)?
         answer,
     required TResult orElse(),
   }) {
@@ -1250,19 +1250,19 @@ class _$AnswerImpl implements _Answer {
 
 abstract class _Answer implements KeyboardMode {
   const factory _Answer(
-      {required final KeyboardSettings settings,
-      required final String answer,
-      required final ExpressionViewerController controller,
-      required final ValueChanged<String> onAnswerChanged,
-      required final dynamic Function(ExpressionModel, int)
-          onAnswerGiven}) = _$AnswerImpl;
+          {required final KeyboardSettings settings,
+          required final String answer,
+          final ExpressionViewerController? controller,
+          required final ValueChanged<String> onAnswerChanged,
+          final dynamic Function(ExpressionModel, int)? onAnswerGiven}) =
+      _$AnswerImpl;
 
   @override
   KeyboardSettings get settings;
   String get answer;
-  ExpressionViewerController get controller;
+  ExpressionViewerController? get controller;
   ValueChanged<String> get onAnswerChanged;
-  dynamic Function(ExpressionModel, int) get onAnswerGiven;
+  dynamic Function(ExpressionModel, int)? get onAnswerGiven;
 
   /// Create a copy of KeyboardMode
   /// with the given fields replaced by the non-null parameter values.
