@@ -34,18 +34,86 @@ class _KeyboardGuideScreenState extends State<KeyboardGuideScreen> {
           ),
         ),
       ],
+      bodyChildren: [
+        _KeyboardSliderNumbersPicker(
+          value: settings.keySize.toInt(),
+          type: KeyboardSettingsType.size,
+          onChanged: (value) => setState(() {
+            settings = settings.copyWith(
+              keySize: value.toDouble(),
+            );
+          }),
+        ),
+        AppPadding.verticalPadding16,
+        _KeyboardSliderNumbersPicker(
+          value: settings.keysOffset.toInt(),
+          type: KeyboardSettingsType.offset,
+          onChanged: (value) => setState(() {
+            settings = settings.copyWith(
+              keysOffset: value.toDouble(),
+            );
+          }),
+        ),
+      ],
       bottomChildren: [
         AppPadding.verticalPadding16,
         AppPadding.horizontalWrapper16(
           child: MatchKeyboard(
-            settings: settings,
-            onKeyPressed: (key) {
-              debugPrint(key.toString());
-            },
+            mode: KeyboardMode.key(
+              settings: settings,
+              onKeyPressed: (key) {
+                debugPrint(key.toString());
+              },
+            ),
           ),
         ),
         AppPadding.verticalPadding16,
       ],
     );
+  }
+}
+
+class _KeyboardSliderNumbersPicker extends SliderNumbersPicker {
+  _KeyboardSliderNumbersPicker({
+    required super.value,
+    required KeyboardSettingsType type,
+    required super.onChanged,
+}) : super(
+    step: type.step,
+    minValue: type.minValue,
+    maxValue: type.maxValue,
+  );
+}
+
+enum KeyboardSettingsType {
+  size,
+  offset,
+}
+
+extension KeyboardSettingsTypeUtils on KeyboardSettingsType {
+  int get defaultValue {
+    return (maxValue + minValue) ~/ 2;
+  }
+
+  int get minValue {
+    switch (this) {
+      case KeyboardSettingsType.size:
+        return 44;
+      case KeyboardSettingsType.offset:
+        return 8;
+    }
+  }
+
+  int get maxValue {
+    switch (this) {
+      case KeyboardSettingsType.size:
+        return 60;
+      case KeyboardSettingsType.offset:
+        return 20;
+    }
+  }
+
+  int get step {
+    return 1;
   }
 }

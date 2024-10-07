@@ -22,8 +22,8 @@ Map<String, dynamic> _$$SettingsImplToJson(_$SettingsImpl instance) =>
 _$KeyboardSettingsImpl _$$KeyboardSettingsImplFromJson(
         Map<String, dynamic> json) =>
     _$KeyboardSettingsImpl(
-      keySize: (json['keySize'] as num?)?.toDouble() ?? 44,
-      keysOffset: (json['keysOffset'] as num?)?.toDouble() ?? 8,
+      keySize: (json['keySize'] as num?)?.toDouble() ?? cKeyMinSize,
+      keysOffset: (json['keysOffset'] as num?)?.toDouble() ?? cKeysMinOffset,
     );
 
 Map<String, dynamic> _$$KeyboardSettingsImplToJson(

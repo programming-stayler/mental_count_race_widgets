@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mental_count_race_widgets/widgets.dart';
 
-import 'animation.dart';
-
 class AnimationList<T> extends StatefulWidget {
   final List<T> items;
   final Function()? onRefresh;

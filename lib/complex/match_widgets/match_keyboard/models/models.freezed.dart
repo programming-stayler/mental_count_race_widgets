@@ -671,7 +671,8 @@ class __$$KeyboardSettingsImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$KeyboardSettingsImpl implements _KeyboardSettings {
-  const _$KeyboardSettingsImpl({this.keySize = 44, this.keysOffset = 8});
+  const _$KeyboardSettingsImpl(
+      {this.keySize = cKeyMinSize, this.keysOffset = cKeysMinOffset});
 
   factory _$KeyboardSettingsImpl.fromJson(Map<String, dynamic> json) =>
       _$$KeyboardSettingsImplFromJson(json);
@@ -736,5 +737,537 @@ abstract class _KeyboardSettings implements KeyboardSettings {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$KeyboardSettingsImplCopyWith<_$KeyboardSettingsImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$KeyboardMode {
+  KeyboardSettings get settings => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            KeyboardSettings settings, ValueChanged<KeyModel> onKeyPressed)
+        key,
+    required TResult Function(
+            KeyboardSettings settings,
+            String answer,
+            ExpressionViewerController controller,
+            ValueChanged<String> onAnswerChanged,
+            dynamic Function(ExpressionModel, int) onAnswerGiven)
+        answer,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(
+            KeyboardSettings settings, ValueChanged<KeyModel> onKeyPressed)?
+        key,
+    TResult? Function(
+            KeyboardSettings settings,
+            String answer,
+            ExpressionViewerController controller,
+            ValueChanged<String> onAnswerChanged,
+            dynamic Function(ExpressionModel, int) onAnswerGiven)?
+        answer,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            KeyboardSettings settings, ValueChanged<KeyModel> onKeyPressed)?
+        key,
+    TResult Function(
+            KeyboardSettings settings,
+            String answer,
+            ExpressionViewerController controller,
+            ValueChanged<String> onAnswerChanged,
+            dynamic Function(ExpressionModel, int) onAnswerGiven)?
+        answer,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Key value) key,
+    required TResult Function(_Answer value) answer,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Key value)? key,
+    TResult? Function(_Answer value)? answer,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Key value)? key,
+    TResult Function(_Answer value)? answer,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+
+  /// Create a copy of KeyboardMode
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $KeyboardModeCopyWith<KeyboardMode> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $KeyboardModeCopyWith<$Res> {
+  factory $KeyboardModeCopyWith(
+          KeyboardMode value, $Res Function(KeyboardMode) then) =
+      _$KeyboardModeCopyWithImpl<$Res, KeyboardMode>;
+  @useResult
+  $Res call({KeyboardSettings settings});
+
+  $KeyboardSettingsCopyWith<$Res> get settings;
+}
+
+/// @nodoc
+class _$KeyboardModeCopyWithImpl<$Res, $Val extends KeyboardMode>
+    implements $KeyboardModeCopyWith<$Res> {
+  _$KeyboardModeCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of KeyboardMode
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? settings = null,
+  }) {
+    return _then(_value.copyWith(
+      settings: null == settings
+          ? _value.settings
+          : settings // ignore: cast_nullable_to_non_nullable
+              as KeyboardSettings,
+    ) as $Val);
+  }
+
+  /// Create a copy of KeyboardMode
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $KeyboardSettingsCopyWith<$Res> get settings {
+    return $KeyboardSettingsCopyWith<$Res>(_value.settings, (value) {
+      return _then(_value.copyWith(settings: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$KeyImplCopyWith<$Res> implements $KeyboardModeCopyWith<$Res> {
+  factory _$$KeyImplCopyWith(_$KeyImpl value, $Res Function(_$KeyImpl) then) =
+      __$$KeyImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({KeyboardSettings settings, ValueChanged<KeyModel> onKeyPressed});
+
+  @override
+  $KeyboardSettingsCopyWith<$Res> get settings;
+}
+
+/// @nodoc
+class __$$KeyImplCopyWithImpl<$Res>
+    extends _$KeyboardModeCopyWithImpl<$Res, _$KeyImpl>
+    implements _$$KeyImplCopyWith<$Res> {
+  __$$KeyImplCopyWithImpl(_$KeyImpl _value, $Res Function(_$KeyImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of KeyboardMode
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? settings = null,
+    Object? onKeyPressed = null,
+  }) {
+    return _then(_$KeyImpl(
+      settings: null == settings
+          ? _value.settings
+          : settings // ignore: cast_nullable_to_non_nullable
+              as KeyboardSettings,
+      onKeyPressed: null == onKeyPressed
+          ? _value.onKeyPressed
+          : onKeyPressed // ignore: cast_nullable_to_non_nullable
+              as ValueChanged<KeyModel>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$KeyImpl implements _Key {
+  const _$KeyImpl({required this.settings, required this.onKeyPressed});
+
+  @override
+  final KeyboardSettings settings;
+  @override
+  final ValueChanged<KeyModel> onKeyPressed;
+
+  @override
+  String toString() {
+    return 'KeyboardMode.key(settings: $settings, onKeyPressed: $onKeyPressed)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$KeyImpl &&
+            (identical(other.settings, settings) ||
+                other.settings == settings) &&
+            (identical(other.onKeyPressed, onKeyPressed) ||
+                other.onKeyPressed == onKeyPressed));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, settings, onKeyPressed);
+
+  /// Create a copy of KeyboardMode
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$KeyImplCopyWith<_$KeyImpl> get copyWith =>
+      __$$KeyImplCopyWithImpl<_$KeyImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            KeyboardSettings settings, ValueChanged<KeyModel> onKeyPressed)
+        key,
+    required TResult Function(
+            KeyboardSettings settings,
+            String answer,
+            ExpressionViewerController controller,
+            ValueChanged<String> onAnswerChanged,
+            dynamic Function(ExpressionModel, int) onAnswerGiven)
+        answer,
+  }) {
+    return key(settings, onKeyPressed);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(
+            KeyboardSettings settings, ValueChanged<KeyModel> onKeyPressed)?
+        key,
+    TResult? Function(
+            KeyboardSettings settings,
+            String answer,
+            ExpressionViewerController controller,
+            ValueChanged<String> onAnswerChanged,
+            dynamic Function(ExpressionModel, int) onAnswerGiven)?
+        answer,
+  }) {
+    return key?.call(settings, onKeyPressed);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            KeyboardSettings settings, ValueChanged<KeyModel> onKeyPressed)?
+        key,
+    TResult Function(
+            KeyboardSettings settings,
+            String answer,
+            ExpressionViewerController controller,
+            ValueChanged<String> onAnswerChanged,
+            dynamic Function(ExpressionModel, int) onAnswerGiven)?
+        answer,
+    required TResult orElse(),
+  }) {
+    if (key != null) {
+      return key(settings, onKeyPressed);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Key value) key,
+    required TResult Function(_Answer value) answer,
+  }) {
+    return key(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Key value)? key,
+    TResult? Function(_Answer value)? answer,
+  }) {
+    return key?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Key value)? key,
+    TResult Function(_Answer value)? answer,
+    required TResult orElse(),
+  }) {
+    if (key != null) {
+      return key(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Key implements KeyboardMode {
+  const factory _Key(
+      {required final KeyboardSettings settings,
+      required final ValueChanged<KeyModel> onKeyPressed}) = _$KeyImpl;
+
+  @override
+  KeyboardSettings get settings;
+  ValueChanged<KeyModel> get onKeyPressed;
+
+  /// Create a copy of KeyboardMode
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$KeyImplCopyWith<_$KeyImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AnswerImplCopyWith<$Res>
+    implements $KeyboardModeCopyWith<$Res> {
+  factory _$$AnswerImplCopyWith(
+          _$AnswerImpl value, $Res Function(_$AnswerImpl) then) =
+      __$$AnswerImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {KeyboardSettings settings,
+      String answer,
+      ExpressionViewerController controller,
+      ValueChanged<String> onAnswerChanged,
+      dynamic Function(ExpressionModel, int) onAnswerGiven});
+
+  @override
+  $KeyboardSettingsCopyWith<$Res> get settings;
+}
+
+/// @nodoc
+class __$$AnswerImplCopyWithImpl<$Res>
+    extends _$KeyboardModeCopyWithImpl<$Res, _$AnswerImpl>
+    implements _$$AnswerImplCopyWith<$Res> {
+  __$$AnswerImplCopyWithImpl(
+      _$AnswerImpl _value, $Res Function(_$AnswerImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of KeyboardMode
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? settings = null,
+    Object? answer = null,
+    Object? controller = null,
+    Object? onAnswerChanged = null,
+    Object? onAnswerGiven = null,
+  }) {
+    return _then(_$AnswerImpl(
+      settings: null == settings
+          ? _value.settings
+          : settings // ignore: cast_nullable_to_non_nullable
+              as KeyboardSettings,
+      answer: null == answer
+          ? _value.answer
+          : answer // ignore: cast_nullable_to_non_nullable
+              as String,
+      controller: null == controller
+          ? _value.controller
+          : controller // ignore: cast_nullable_to_non_nullable
+              as ExpressionViewerController,
+      onAnswerChanged: null == onAnswerChanged
+          ? _value.onAnswerChanged
+          : onAnswerChanged // ignore: cast_nullable_to_non_nullable
+              as ValueChanged<String>,
+      onAnswerGiven: null == onAnswerGiven
+          ? _value.onAnswerGiven
+          : onAnswerGiven // ignore: cast_nullable_to_non_nullable
+              as dynamic Function(ExpressionModel, int),
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AnswerImpl implements _Answer {
+  const _$AnswerImpl(
+      {required this.settings,
+      required this.answer,
+      required this.controller,
+      required this.onAnswerChanged,
+      required this.onAnswerGiven});
+
+  @override
+  final KeyboardSettings settings;
+  @override
+  final String answer;
+  @override
+  final ExpressionViewerController controller;
+  @override
+  final ValueChanged<String> onAnswerChanged;
+  @override
+  final dynamic Function(ExpressionModel, int) onAnswerGiven;
+
+  @override
+  String toString() {
+    return 'KeyboardMode.answer(settings: $settings, answer: $answer, controller: $controller, onAnswerChanged: $onAnswerChanged, onAnswerGiven: $onAnswerGiven)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AnswerImpl &&
+            (identical(other.settings, settings) ||
+                other.settings == settings) &&
+            (identical(other.answer, answer) || other.answer == answer) &&
+            (identical(other.controller, controller) ||
+                other.controller == controller) &&
+            (identical(other.onAnswerChanged, onAnswerChanged) ||
+                other.onAnswerChanged == onAnswerChanged) &&
+            (identical(other.onAnswerGiven, onAnswerGiven) ||
+                other.onAnswerGiven == onAnswerGiven));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, settings, answer, controller,
+      onAnswerChanged, onAnswerGiven);
+
+  /// Create a copy of KeyboardMode
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AnswerImplCopyWith<_$AnswerImpl> get copyWith =>
+      __$$AnswerImplCopyWithImpl<_$AnswerImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            KeyboardSettings settings, ValueChanged<KeyModel> onKeyPressed)
+        key,
+    required TResult Function(
+            KeyboardSettings settings,
+            String answer,
+            ExpressionViewerController controller,
+            ValueChanged<String> onAnswerChanged,
+            dynamic Function(ExpressionModel, int) onAnswerGiven)
+        answer,
+  }) {
+    return answer(
+        settings, this.answer, controller, onAnswerChanged, onAnswerGiven);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(
+            KeyboardSettings settings, ValueChanged<KeyModel> onKeyPressed)?
+        key,
+    TResult? Function(
+            KeyboardSettings settings,
+            String answer,
+            ExpressionViewerController controller,
+            ValueChanged<String> onAnswerChanged,
+            dynamic Function(ExpressionModel, int) onAnswerGiven)?
+        answer,
+  }) {
+    return answer?.call(
+        settings, this.answer, controller, onAnswerChanged, onAnswerGiven);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            KeyboardSettings settings, ValueChanged<KeyModel> onKeyPressed)?
+        key,
+    TResult Function(
+            KeyboardSettings settings,
+            String answer,
+            ExpressionViewerController controller,
+            ValueChanged<String> onAnswerChanged,
+            dynamic Function(ExpressionModel, int) onAnswerGiven)?
+        answer,
+    required TResult orElse(),
+  }) {
+    if (answer != null) {
+      return answer(
+          settings, this.answer, controller, onAnswerChanged, onAnswerGiven);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Key value) key,
+    required TResult Function(_Answer value) answer,
+  }) {
+    return answer(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Key value)? key,
+    TResult? Function(_Answer value)? answer,
+  }) {
+    return answer?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Key value)? key,
+    TResult Function(_Answer value)? answer,
+    required TResult orElse(),
+  }) {
+    if (answer != null) {
+      return answer(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Answer implements KeyboardMode {
+  const factory _Answer(
+      {required final KeyboardSettings settings,
+      required final String answer,
+      required final ExpressionViewerController controller,
+      required final ValueChanged<String> onAnswerChanged,
+      required final dynamic Function(ExpressionModel, int)
+          onAnswerGiven}) = _$AnswerImpl;
+
+  @override
+  KeyboardSettings get settings;
+  String get answer;
+  ExpressionViewerController get controller;
+  ValueChanged<String> get onAnswerChanged;
+  dynamic Function(ExpressionModel, int) get onAnswerGiven;
+
+  /// Create a copy of KeyboardMode
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$AnswerImplCopyWith<_$AnswerImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

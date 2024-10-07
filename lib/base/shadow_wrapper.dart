@@ -35,28 +35,32 @@ class ShadowWrapper extends StatelessWidget {
             children.addAll([
               LeftPositioned(
                 width: size ?? constraints.maxWidth / 5,
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.horizontal(
-                      left: Radius.circular(16),
-                    ),
-                    gradient: LinearGradient(
-                      colors: colors,
+                child: IgnorePointer(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.horizontal(
+                        left: Radius.circular(16),
+                      ),
+                      gradient: LinearGradient(
+                        colors: colors,
+                      ),
                     ),
                   ),
                 ),
               ),
               RightPositioned(
                 width: size ?? constraints.maxWidth / 5,
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.horizontal(
-                      right: Radius.circular(16),
-                    ),
-                    gradient: LinearGradient(
-                      begin: Alignment.centerRight,
-                      end: Alignment.centerLeft,
-                      colors: colors,
+                child: IgnorePointer(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.horizontal(
+                        right: Radius.circular(16),
+                      ),
+                      gradient: LinearGradient(
+                        begin: Alignment.centerRight,
+                        end: Alignment.centerLeft,
+                        colors: colors,
+                      ),
                     ),
                   ),
                 ),
@@ -68,24 +72,28 @@ class ShadowWrapper extends StatelessWidget {
             children.addAll([
               TopPositioned(
                 height: size ?? shadowOffset,
-                child: Container(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: colors,
+                child: IgnorePointer(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: colors,
+                      ),
                     ),
                   ),
                 ),
               ),
               BottomPositioned(
                 height: size ?? shadowOffset,
-                child: Container(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.bottomCenter,
-                      end: Alignment.topCenter,
-                      colors: colors,
+                child: IgnorePointer(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.bottomCenter,
+                        end: Alignment.topCenter,
+                        colors: colors,
+                      ),
                     ),
                   ),
                 ),

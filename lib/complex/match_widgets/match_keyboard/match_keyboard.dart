@@ -4,19 +4,17 @@ import 'package:mental_count_race_widgets/widgets.dart';
 export 'models/models.dart';
 
 class MatchKeyboard extends StatelessWidget {
-  final KeyboardSettings settings;
-  final ValueChanged<KeyModel> onKeyPressed;
+  final KeyboardMode mode;
 
   const MatchKeyboard({
     super.key,
-    required this.settings,
-    required this.onKeyPressed,
+    required this.mode,
   });
 
   @override
   Widget build(BuildContext context) {
-    final keySize = settings.keySize.toWidth;
-    final keysOffset = settings.keysOffset.toWidth;
+    final keySize = mode.settings.keySize.toWidth;
+    final keysOffset = mode.settings.keysOffset.toWidth;
     final symbolsChildren = <Widget>[];
     for (var i = 0; i < rowsCount; i++) {
       final rowChildren = <Widget>[];
@@ -105,6 +103,59 @@ class MatchKeyboard extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: rowChildren,
+    );
+  }
+
+  void onKeyPressed(KeyModel key) {
+    mode.map(
+      key: (mode) {
+        mode.onKeyPressed(key);
+      },
+      answer: (mode) {
+        // TODO: count accuracy
+        key.map(
+          symbol: (symbol) {
+            final answerString = '${mode.answer}${symbol.text}';
+            mode.onAnswerChanged(answerString);
+            final expression = mode.controller.currentItem;
+            expression?.whenOrNull(
+              expression: (expression, _) {
+                final answer = int.tryParse(answerString);
+                if (answer != null && expression.result == answer) {
+                  mode.onAnswerGiven(expression, answer);
+                }
+              },
+            );
+          },
+          action: (action) {
+            switch (action.action) {
+              case KeyAction.backward:
+                if (mode.answer.isNotEmpty) {
+                  mode.onAnswerChanged(
+                    mode.answer.substring(0, mode.answer.length - 1),
+                  );
+                }
+                break;
+              case KeyAction.answer:
+                final expression = mode.controller.currentItem;
+                expression?.whenOrNull(
+                  expression: (expression, _) {
+                    final answer = int.tryParse(mode.answer);
+                    if (answer != null) {
+                      mode.onAnswerGiven(expression, answer);
+                    }
+                  },
+                );
+                break;
+              case KeyAction.minus:
+                mode.onAnswerChanged(
+                  '${mode.answer}${action.text}',
+                );
+                break;
+            }
+          },
+        );
+      },
     );
   }
 }

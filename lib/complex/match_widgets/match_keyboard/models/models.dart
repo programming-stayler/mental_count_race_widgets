@@ -1,5 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:mental_count_race_widgets/widgets.dart';
+import 'package:pythagoras/pythagoras.dart';
 
 part 'models.freezed.dart';
 part 'models.g.dart';
@@ -52,10 +54,26 @@ const cKeysMaxOffset = 20.0;
 @freezed
 class KeyboardSettings with _$KeyboardSettings {
   const factory KeyboardSettings({
-    @Default(44) double keySize,
-    @Default(8) double keysOffset,
+    @Default(cKeyMinSize) double keySize,
+    @Default(cKeysMinOffset) double keysOffset,
   }) = _KeyboardSettings;
 
   factory KeyboardSettings.fromJson(Map<String, dynamic> json) =>
       _$KeyboardSettingsFromJson(json);
+}
+
+@freezed
+class KeyboardMode with _$KeyboardMode {
+  const factory KeyboardMode.key({
+    required KeyboardSettings settings,
+    required ValueChanged<KeyModel> onKeyPressed,
+  }) = _Key;
+
+  const factory KeyboardMode.answer({
+    required KeyboardSettings settings,
+    required String answer,
+    required ExpressionViewerController controller,
+    required ValueChanged<String> onAnswerChanged,
+    required Function(ExpressionModel, int) onAnswerGiven,
+  }) = _Answer;
 }
