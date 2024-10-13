@@ -78,7 +78,7 @@ final neuBrutalism = () {
     decoration: decoratedBox,
   );
   return AppStyleSystem(
-    fontFamily: 'Popins',
+    fontFamily: 'Poppins',
     actionColorHex: actionColor,
     screenBGColorHex: screenColor,
     desaturatedColorHex: '999999',

@@ -5,3 +5,4 @@ export 'fields/fields.dart';
 export 'graphic/graphic.dart';
 export 'match_widgets/match_widgets.dart';
 export 'pickers/pickers.dart';
+export 'tutorial/tutorial.dart';
