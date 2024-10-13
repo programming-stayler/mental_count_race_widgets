@@ -405,7 +405,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "3869a5a40353f76a5ecdf406857338064cb7982f"
+      resolved-ref: "05be4fc36f6db140d105b37c26cbe27d4f7bf16c"
       url: "git@github.com:programming-stayler/pythagoras_match.git"
     source: git
     version: "1.0.0"

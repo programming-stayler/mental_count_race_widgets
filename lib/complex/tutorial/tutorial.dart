@@ -87,7 +87,7 @@ class TutorialInfoSection extends StatelessWidget {
 class TutorialUsersFeedbackSection extends StatelessWidget {
   final int likes;
   final int dislikes;
-  final List<TutorialComment> comments;
+  final int commentsCount;
   final TextUIStyle? textStyle;
   final VoidCallback? onLikeTap;
   final VoidCallback? onDislikeTap;
@@ -98,7 +98,7 @@ class TutorialUsersFeedbackSection extends StatelessWidget {
     super.key,
     required this.likes,
     required this.dislikes,
-    required this.comments,
+    required this.commentsCount,
     this.textStyle,
     this.onLikeTap,
     this.onDislikeTap,
@@ -149,7 +149,7 @@ class TutorialUsersFeedbackSection extends StatelessWidget {
             ),
             AppPadding.horizontalPadding4,
             AppText(
-              '${comments.length}',
+              '$commentsCount',
               uiStyle:
               (textStyle ?? style.textStyle.regularFont.simple).copyWith(
                 colorHex: style.neutralColorHex,
