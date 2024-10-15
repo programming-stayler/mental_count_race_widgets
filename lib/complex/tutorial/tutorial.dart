@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mental_count_race_widgets/utils/date_utils.dart';
 import 'package:mental_count_race_widgets/widgets.dart';
 import 'package:pythagoras_match/pythagoras_match.dart';
 
@@ -62,13 +63,13 @@ class TutorialInfoSection extends StatelessWidget {
               Wrap(
                 children: [
                   AppText(
-                    createdAt.toString(),
+                    createdAt.formattedDate(),
                     uiStyle: createdAtTextStyle ??
                         style.textStyle.lightFont.description.copyWith(
                           colorHex: style.neutralColorHex,
                         ),
                   ),
-                  AppPadding.horizontalPadding2,
+                  AppPadding.horizontalPadding4,
                   AppText(
                     '$minsToRead mins read',
                     uiStyle: minsToReadTextStyle ??
@@ -88,6 +89,8 @@ class TutorialUsersFeedbackSection extends StatelessWidget {
   final int likes;
   final int dislikes;
   final int commentsCount;
+  final bool liked;
+  final bool disliked;
   final TextUIStyle? textStyle;
   final VoidCallback? onLikeTap;
   final VoidCallback? onDislikeTap;
@@ -99,6 +102,8 @@ class TutorialUsersFeedbackSection extends StatelessWidget {
     required this.likes,
     required this.dislikes,
     required this.commentsCount,
+    required this.liked,
+    required this.disliked,
     this.textStyle,
     this.onLikeTap,
     this.onDislikeTap,
@@ -116,10 +121,13 @@ class TutorialUsersFeedbackSection extends StatelessWidget {
         Row(
           children: [
             AppPadding.horizontalPadding8,
-            Icon(
-              Icons.thumb_up_outlined,
-              size: 22,
-              color: style.neutralColorHex.color,
+            InkWell(
+              onTap: onLikeTap,
+              child: Icon(
+                liked ? Icons.thumb_up_alt : Icons.thumb_up_outlined,
+                size: 22,
+                color: style.neutralColorHex.color,
+              ),
             ),
             AppPadding.horizontalPadding4,
             AppText(
@@ -128,10 +136,13 @@ class TutorialUsersFeedbackSection extends StatelessWidget {
                   .copyWith(colorHex: style.positiveColorHex),
             ),
             AppPadding.horizontalPadding20,
-            Icon(
-              Icons.thumb_down_outlined,
-              size: 22,
-              color: style.neutralColorHex.color,
+            InkWell(
+              onTap: onDislikeTap,
+              child: Icon(
+                disliked ? Icons.thumb_down_alt : Icons.thumb_down_outlined,
+                size: 22,
+                color: style.neutralColorHex.color,
+              ),
             ),
             AppPadding.horizontalPadding4,
             AppText(
@@ -142,10 +153,13 @@ class TutorialUsersFeedbackSection extends StatelessWidget {
               ),
             ),
             AppPadding.horizontalPadding20,
-            Icon(
-              Icons.mode_comment_outlined,
-              size: 22,
-              color: style.neutralColorHex.color,
+            InkWell(
+              onTap: onCommentTap,
+              child: Icon(
+                Icons.mode_comment_outlined,
+                size: 22,
+                color: style.neutralColorHex.color,
+              ),
             ),
             AppPadding.horizontalPadding4,
             AppText(

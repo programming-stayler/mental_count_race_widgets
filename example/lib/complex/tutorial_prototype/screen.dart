@@ -129,6 +129,8 @@ class _TutorialPrototypeScreenState extends State<TutorialPrototypeScreen> {
                         likes: tutorial.likes,
                         dislikes: tutorial.dislikes,
                         commentsCount: tutorial.commentsCount,
+                        liked: false,
+                        disliked: false,
                       ),
                     ),
                     AppPadding.verticalPadding20,
