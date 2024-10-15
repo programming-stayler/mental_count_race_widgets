@@ -137,7 +137,7 @@ class TutorialUsersFeedbackSection extends StatelessWidget {
             AppText(
               '$dislikes',
               uiStyle:
-              (textStyle ?? style.textStyle.regularFont.simple).copyWith(
+                  (textStyle ?? style.textStyle.regularFont.simple).copyWith(
                 colorHex: style.negativeColorHex,
               ),
             ),
@@ -151,7 +151,7 @@ class TutorialUsersFeedbackSection extends StatelessWidget {
             AppText(
               '$commentsCount',
               uiStyle:
-              (textStyle ?? style.textStyle.regularFont.simple).copyWith(
+                  (textStyle ?? style.textStyle.regularFont.simple).copyWith(
                 colorHex: style.neutralColorHex,
               ),
             ),
@@ -188,6 +188,27 @@ class TutorialTextSection extends StatelessWidget {
       model.text,
       textAlign: TextAlign.justify,
       uiStyle: textStyle ?? style.textStyle.lightFont,
+    );
+  }
+}
+
+class TutorialSubHeaderSection extends StatelessWidget {
+  final SubHeaderSectionModel model;
+  final TextUIStyle? textStyle;
+
+  const TutorialSubHeaderSection({
+    super.key,
+    required this.model,
+    this.textStyle,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final style = AppGlobalStyle.of(context).style;
+    return AppText(
+      model.text,
+      textAlign: TextAlign.justify,
+      uiStyle: textStyle ?? style.textStyle.semiBoldFont.simple,
     );
   }
 }
@@ -300,10 +321,8 @@ class TutorialBulletListSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        AppText(
-          model.title,
-          textAlign: TextAlign.justify,
-          uiStyle: titleTextStyle ?? style.textStyle.semiBoldFont.simple,
+        TutorialSubHeaderSection(
+          model: model.title,
         ),
         ...sections,
       ],
@@ -319,7 +338,6 @@ class TutorialContentSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final children = <Widget>[];
-
     for (final model in content) {
       model.map(
         text: (model) {
@@ -328,27 +346,32 @@ class TutorialContentSection extends StatelessWidget {
             AppPadding.verticalPadding12,
           ]);
         },
-        spotlight: (model) {},
-        link: (model) {},
-        bulletList: (model) {},
+        subHeader: (model) {
+          children.addAll([
+            AppPadding.verticalPadding12,
+            TutorialSubHeaderSection(model: model),
+            AppPadding.verticalPadding4,
+          ]);
+        },
+        spotlight: (model) {
+          children.addAll([
+            TutorialSpotlightSection(model: model),
+            AppPadding.verticalPadding24,
+          ]);
+        },
+        link: (model) {
+          children.addAll([
+            TutorialLinkSection(model: model),
+            AppPadding.verticalPadding24,
+          ]);
+        },
+        bulletList: (model) {
+          children.addAll([
+            TutorialBulletListSection(model: model),
+            AppPadding.verticalPadding20,
+          ]);
+        },
       );
-      if (model is TextSectionModel) {
-      } else if (model is LinkSectionModel) {
-        children.addAll([
-          TutorialLinkSection(model: model),
-          AppPadding.verticalPadding24,
-        ]);
-      } else if (model is SpotlightSectionModel) {
-        children.addAll([
-          TutorialSpotlightSection(model: model),
-          AppPadding.verticalPadding24,
-        ]);
-      } else if (model is BulletListSectionModel) {
-        children.addAll([
-          TutorialBulletListSection(model: model),
-          AppPadding.verticalPadding20,
-        ]);
-      }
     }
     return AnimatedColumn(
       children: children,

@@ -24,12 +24,13 @@ class TutorialPrototypeScreen extends StatefulWidget {
 }
 
 class _TutorialPrototypeScreenState extends State<TutorialPrototypeScreen> {
-  late AppTutorial tutorial;
+  late AppTutorialFull tutorial;
 
   @override
   void initState() {
     super.initState();
-    tutorial = AppTutorial(
+    tutorial = AppTutorialFull(
+      id: '',
       title: 'Why this year’s hurricane season is worse than most',
       author: const User.server(
         id: '1',
@@ -64,7 +65,9 @@ class _TutorialPrototypeScreenState extends State<TutorialPrototypeScreen> {
           type: TutorialLinkType.image,
         ),
         const BulletListSectionModel(
-          title: 'What else we’re reading: figs, ASMR, and namedropping',
+          title: SubHeaderSectionModel(
+            text: 'What else we’re reading: figs, ASMR, and namedropping',
+          ),
           sections: [
             TextSectionModel(
               text:
