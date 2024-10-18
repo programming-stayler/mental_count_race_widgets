@@ -112,6 +112,7 @@ class AppSheetScaffold extends StatefulWidget {
   final List<Widget> bodyChildren;
   final List<Widget> bottomChildren;
   final AnimationController? controller;
+  final VoidCallback? appearCallback;
 
   const AppSheetScaffold({
     super.key,
@@ -119,6 +120,7 @@ class AppSheetScaffold extends StatefulWidget {
     this.bodyChildren = const [],
     this.bottomChildren = const [],
     this.controller,
+    this.appearCallback,
   });
 
   @override
@@ -142,11 +144,14 @@ class _AppSheetScaffoldState extends State<AppSheetScaffold>
       WidgetsBinding.instance.addPostFrameCallback((_) {
         controller
             .forward(
-              from: 0.0,
-            )
+          from: 0.0,
+        )
             .then(
-              (value) => setState(() => showBody = true),
-            );
+          (value) {
+            widget.appearCallback?.call();
+            setState(() => showBody = true);
+          },
+        );
       });
     }
   }
@@ -199,6 +204,7 @@ class AnimatedAppSheetScaffold extends StatefulWidget {
   final List<Widget> bottomChildren;
   final AnimationController? controller;
   final Duration? duration;
+  final VoidCallback? appearCallback;
 
   const AnimatedAppSheetScaffold({
     super.key,
@@ -207,6 +213,7 @@ class AnimatedAppSheetScaffold extends StatefulWidget {
     this.bottomChildren = const [],
     this.controller,
     this.duration,
+    this.appearCallback,
   });
 
   @override
@@ -234,7 +241,10 @@ class _AnimatedAppSheetScaffoldState extends State<AnimatedAppSheetScaffold>
               from: 0.0,
             )
             .then(
-              (value) => setState(() => showBody = true),
+              (value) {
+                widget.appearCallback?.call();
+                setState(() => showBody = true);
+              },
             );
       });
     }
