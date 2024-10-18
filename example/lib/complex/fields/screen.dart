@@ -22,6 +22,7 @@ class FieldsGuideScreen extends StatefulWidget {
 class _FieldsGuideScreenState extends State<FieldsGuideScreen> {
   KeyboardSettings settings = const KeyboardSettings();
   var canShowPassword = false;
+  var switchValue = false;
 
   @override
   Widget build(BuildContext context) {
@@ -68,6 +69,35 @@ class _FieldsGuideScreenState extends State<FieldsGuideScreen> {
                         canShowPassword = !canShowPassword;
                       }),
                     ),
+                  ),
+                ),
+                AppPadding.verticalPadding16,
+                AppPadding.horizontalWrapper16(
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            AppText(
+                              'Switch title - short but bigger',
+                              uiStyle: globalStyle.textStyle.regularFont.simple,
+                            ),
+                            AppText(
+                              'Switch description - much more longer but thinner',
+                              uiStyle:
+                                  globalStyle.textStyle.lightFont.description,
+                            ),
+                          ],
+                        ),
+                      ),
+                      AppSwitch(
+                        value: switchValue,
+                        onChanged: (value) => setState(
+                          () => switchValue = value,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
