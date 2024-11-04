@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mental_count_race_widgets/widgets.dart';
 
 const _colorMinRNDValue = 25.0;
 const _colorMaxRNDValue = 85.0;
@@ -90,4 +91,15 @@ Color? lerpGradient(List<Color> colors, List<double> stops, double t) {
     }
   }
   return colors.last;
+}
+
+
+extension AppGlobalStyleBot on AppGlobalStyle {
+  List<Color> get sectionColors {
+    return [
+      style.positiveColorHex.color,
+      style.actionColorHex.color,
+      style.negativeColorHex.color,
+    ];
+  }
 }

@@ -3,6 +3,7 @@ import 'package:mental_count_race_widgets/widgets.dart';
 
 import 'animation/screen.dart';
 import 'app_sheet/screen.dart';
+import 'bot/screen.dart';
 import 'charts/screen.dart';
 import 'expression_viewer/screen.dart';
 import 'fields/screen.dart';
@@ -138,6 +139,17 @@ class _ComplexGuideScreenState extends State<ComplexGuideScreen> {
                 ),
                 onTap: () => Navigator.of(context).push(
                   TutorialPrototypeScreen.getRoute(),
+                ),
+              ),
+              AppPadding.verticalPadding32,
+              InkWell(
+                child: AppText(
+                  'Bot',
+                  textAlign: TextAlign.center,
+                  uiStyle: style.textStyle.boldFont.simple,
+                ),
+                onTap: () => Navigator.of(context).push(
+                  BotGuideScreen.getRoute(),
                 ),
               ),
             ],

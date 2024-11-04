@@ -112,7 +112,8 @@ class AppSheetScaffold extends StatefulWidget {
   final List<Widget> bodyChildren;
   final List<Widget> bottomChildren;
   final AnimationController? controller;
-  final VoidCallback? appearCallback;
+  final VoidCallback? didAppearCallback;
+  final VoidCallback? willAppearCallback;
 
   const AppSheetScaffold({
     super.key,
@@ -120,7 +121,8 @@ class AppSheetScaffold extends StatefulWidget {
     this.bodyChildren = const [],
     this.bottomChildren = const [],
     this.controller,
-    this.appearCallback,
+    this.didAppearCallback,
+    this.willAppearCallback,
   });
 
   @override
@@ -142,13 +144,10 @@ class _AppSheetScaffoldState extends State<AppSheetScaffold>
         );
     if (widget.controller == null) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        controller
-            .forward(
-          from: 0.0,
-        )
-            .then(
+        widget.willAppearCallback?.call();
+        controller.forward(from: 0.0).then(
           (value) {
-            widget.appearCallback?.call();
+            widget.didAppearCallback?.call();
             setState(() => showBody = true);
           },
         );
@@ -204,7 +203,8 @@ class AnimatedAppSheetScaffold extends StatefulWidget {
   final List<Widget> bottomChildren;
   final AnimationController? controller;
   final Duration? duration;
-  final VoidCallback? appearCallback;
+  final VoidCallback? didAppearCallback;
+  final VoidCallback? willAppearCallback;
 
   const AnimatedAppSheetScaffold({
     super.key,
@@ -213,7 +213,8 @@ class AnimatedAppSheetScaffold extends StatefulWidget {
     this.bottomChildren = const [],
     this.controller,
     this.duration,
-    this.appearCallback,
+    this.didAppearCallback,
+    this.willAppearCallback,
   });
 
   @override
@@ -236,16 +237,13 @@ class _AnimatedAppSheetScaffoldState extends State<AnimatedAppSheetScaffold>
         );
     if (widget.controller == null) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        controller
-            .forward(
-              from: 0.0,
-            )
-            .then(
-              (value) {
-                widget.appearCallback?.call();
-                setState(() => showBody = true);
-              },
-            );
+        widget.willAppearCallback?.call();
+        controller.forward(from: 0.0).then(
+          (value) {
+            widget.didAppearCallback?.call();
+            setState(() => showBody = true);
+          },
+        );
       });
     }
   }

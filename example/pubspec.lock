@@ -248,6 +248,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.4.4"
+  gauge_indicator:
+    dependency: transitive
+    description:
+      name: gauge_indicator
+      sha256: "483abfae360ddffdf7b89fbd25192f83d1a6513d5da18f2388131566ab0793fd"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.4.3"
   get_it:
     dependency: transitive
     description:
@@ -550,6 +558,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.0"
+  wheel_chooser:
+    dependency: transitive
+    description:
+      name: wheel_chooser
+      sha256: "3fee36f081f321c58a0b7b4afcdd92599f2ca520b3a1420084774e6b19cca1d8"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.2"
+  wheel_slider:
+    dependency: transitive
+    description:
+      name: wheel_slider
+      sha256: "63a4cdfeb262d5c5bce2f59b6488b070c192960dcd789e9344a80e1e29ca6c2c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.2.1"
   yaml:
     dependency: transitive
     description:

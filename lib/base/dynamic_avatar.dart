@@ -168,3 +168,28 @@ class BotAvatar extends StatelessWidget {
     );
   }
 }
+
+class BotIcon extends StatelessWidget {
+  final int pace;
+  final double size;
+
+  const BotIcon({
+    super.key,
+    required this.pace,
+    this.size = 44,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final style = AppGlobalStyle.of(context);
+    return Icon(
+      Icons.smart_toy_outlined,
+      size: size,
+      color: lerpGradient(
+        style.sectionColors,
+        sectionsStops,
+        pace / (maxSpeed - minSpeed),
+      ),
+    );
+  }
+}
