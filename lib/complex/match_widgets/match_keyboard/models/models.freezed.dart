@@ -753,7 +753,7 @@ mixin _$KeyboardMode {
             String answer,
             ExpressionViewerController? controller,
             ValueChanged<String> onAnswerChanged,
-            dynamic Function(ExpressionModel, int)? onAnswerGiven)
+            dynamic Function(ExpressionModel, int, int)? onAnswerGiven)
         answer,
   }) =>
       throw _privateConstructorUsedError;
@@ -767,7 +767,7 @@ mixin _$KeyboardMode {
             String answer,
             ExpressionViewerController? controller,
             ValueChanged<String> onAnswerChanged,
-            dynamic Function(ExpressionModel, int)? onAnswerGiven)?
+            dynamic Function(ExpressionModel, int, int)? onAnswerGiven)?
         answer,
   }) =>
       throw _privateConstructorUsedError;
@@ -781,7 +781,7 @@ mixin _$KeyboardMode {
             String answer,
             ExpressionViewerController? controller,
             ValueChanged<String> onAnswerChanged,
-            dynamic Function(ExpressionModel, int)? onAnswerGiven)?
+            dynamic Function(ExpressionModel, int, int)? onAnswerGiven)?
         answer,
     required TResult orElse(),
   }) =>
@@ -948,7 +948,7 @@ class _$KeyImpl implements _Key {
             String answer,
             ExpressionViewerController? controller,
             ValueChanged<String> onAnswerChanged,
-            dynamic Function(ExpressionModel, int)? onAnswerGiven)
+            dynamic Function(ExpressionModel, int, int)? onAnswerGiven)
         answer,
   }) {
     return key(settings, onKeyPressed);
@@ -965,7 +965,7 @@ class _$KeyImpl implements _Key {
             String answer,
             ExpressionViewerController? controller,
             ValueChanged<String> onAnswerChanged,
-            dynamic Function(ExpressionModel, int)? onAnswerGiven)?
+            dynamic Function(ExpressionModel, int, int)? onAnswerGiven)?
         answer,
   }) {
     return key?.call(settings, onKeyPressed);
@@ -982,7 +982,7 @@ class _$KeyImpl implements _Key {
             String answer,
             ExpressionViewerController? controller,
             ValueChanged<String> onAnswerChanged,
-            dynamic Function(ExpressionModel, int)? onAnswerGiven)?
+            dynamic Function(ExpressionModel, int, int)? onAnswerGiven)?
         answer,
     required TResult orElse(),
   }) {
@@ -1054,7 +1054,7 @@ abstract class _$$AnswerImplCopyWith<$Res>
       String answer,
       ExpressionViewerController? controller,
       ValueChanged<String> onAnswerChanged,
-      dynamic Function(ExpressionModel, int)? onAnswerGiven});
+      dynamic Function(ExpressionModel, int, int)? onAnswerGiven});
 
   @override
   $KeyboardSettingsCopyWith<$Res> get settings;
@@ -1099,7 +1099,7 @@ class __$$AnswerImplCopyWithImpl<$Res>
       onAnswerGiven: freezed == onAnswerGiven
           ? _value.onAnswerGiven
           : onAnswerGiven // ignore: cast_nullable_to_non_nullable
-              as dynamic Function(ExpressionModel, int)?,
+              as dynamic Function(ExpressionModel, int, int)?,
     ));
   }
 }
@@ -1123,7 +1123,7 @@ class _$AnswerImpl implements _Answer {
   @override
   final ValueChanged<String> onAnswerChanged;
   @override
-  final dynamic Function(ExpressionModel, int)? onAnswerGiven;
+  final dynamic Function(ExpressionModel, int, int)? onAnswerGiven;
 
   @override
   String toString() {
@@ -1169,7 +1169,7 @@ class _$AnswerImpl implements _Answer {
             String answer,
             ExpressionViewerController? controller,
             ValueChanged<String> onAnswerChanged,
-            dynamic Function(ExpressionModel, int)? onAnswerGiven)
+            dynamic Function(ExpressionModel, int, int)? onAnswerGiven)
         answer,
   }) {
     return answer(
@@ -1187,7 +1187,7 @@ class _$AnswerImpl implements _Answer {
             String answer,
             ExpressionViewerController? controller,
             ValueChanged<String> onAnswerChanged,
-            dynamic Function(ExpressionModel, int)? onAnswerGiven)?
+            dynamic Function(ExpressionModel, int, int)? onAnswerGiven)?
         answer,
   }) {
     return answer?.call(
@@ -1205,7 +1205,7 @@ class _$AnswerImpl implements _Answer {
             String answer,
             ExpressionViewerController? controller,
             ValueChanged<String> onAnswerChanged,
-            dynamic Function(ExpressionModel, int)? onAnswerGiven)?
+            dynamic Function(ExpressionModel, int, int)? onAnswerGiven)?
         answer,
     required TResult orElse(),
   }) {
@@ -1254,7 +1254,7 @@ abstract class _Answer implements KeyboardMode {
           required final String answer,
           final ExpressionViewerController? controller,
           required final ValueChanged<String> onAnswerChanged,
-          final dynamic Function(ExpressionModel, int)? onAnswerGiven}) =
+          final dynamic Function(ExpressionModel, int, int)? onAnswerGiven}) =
       _$AnswerImpl;
 
   @override
@@ -1262,7 +1262,7 @@ abstract class _Answer implements KeyboardMode {
   String get answer;
   ExpressionViewerController? get controller;
   ValueChanged<String> get onAnswerChanged;
-  dynamic Function(ExpressionModel, int)? get onAnswerGiven;
+  dynamic Function(ExpressionModel, int, int)? get onAnswerGiven;
 
   /// Create a copy of KeyboardMode
   /// with the given fields replaced by the non-null parameter values.

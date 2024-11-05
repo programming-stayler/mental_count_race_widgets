@@ -75,6 +75,6 @@ class KeyboardMode with _$KeyboardMode {
     required String answer,
     ExpressionViewerController? controller,
     required ValueChanged<String> onAnswerChanged,
-    Function(ExpressionModel, int)? onAnswerGiven,
+    Function(ExpressionModel, int, int)? onAnswerGiven,
   }) = _Answer;
 }

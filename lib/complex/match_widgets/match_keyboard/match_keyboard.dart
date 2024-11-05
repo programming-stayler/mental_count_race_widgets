@@ -3,7 +3,7 @@ import 'package:mental_count_race_widgets/widgets.dart';
 
 export 'models/models.dart';
 
-class MatchKeyboard extends StatelessWidget {
+class MatchKeyboard extends StatefulWidget {
   final KeyboardMode mode;
 
   const MatchKeyboard({
@@ -12,9 +12,16 @@ class MatchKeyboard extends StatelessWidget {
   });
 
   @override
+  State<MatchKeyboard> createState() => _MatchKeyboardState();
+}
+
+class _MatchKeyboardState extends State<MatchKeyboard> {
+  int mistakes = 0;
+
+  @override
   Widget build(BuildContext context) {
-    final keySize = mode.settings.keySize.toWidth;
-    final keysOffset = mode.settings.keysOffset.toWidth;
+    final keySize = widget.mode.settings.keySize.toWidth;
+    final keysOffset = widget.mode.settings.keysOffset.toWidth;
     final symbolsChildren = <Widget>[];
     for (var i = 0; i < rowsCount; i++) {
       final rowChildren = <Widget>[];
@@ -107,7 +114,7 @@ class MatchKeyboard extends StatelessWidget {
   }
 
   void onKeyPressed(KeyModel key) {
-    mode.map(
+    widget.mode.map(
       key: (mode) {
         mode.onKeyPressed(key);
       },
@@ -122,9 +129,13 @@ class MatchKeyboard extends StatelessWidget {
               final expression = controller.currentItem;
               expression?.whenOrNull(
                 expression: (expression, _) {
+                  if (expression.isMistake(answerString)) {
+                    mistakes += 1;
+                  }
                   final answer = int.tryParse(answerString);
                   if (answer != null && expression.result == answer) {
-                    mode.onAnswerGiven?.call(expression, answer);
+                    mode.onAnswerGiven?.call(expression, answer, mistakes);
+                    mistakes = 0;
                   }
                 },
               );
@@ -145,9 +156,13 @@ class MatchKeyboard extends StatelessWidget {
                   final expression = controller.currentItem;
                   expression?.whenOrNull(
                     expression: (expression, _) {
+                      if (expression.isMistake(mode.answer)) {
+                        mistakes += 1;
+                      }
                       final answer = int.tryParse(mode.answer);
                       if (answer != null) {
-                        mode.onAnswerGiven?.call(expression, answer);
+                        mode.onAnswerGiven?.call(expression, answer, mistakes);
+                        mistakes = 0;
                       }
                     },
                   );
