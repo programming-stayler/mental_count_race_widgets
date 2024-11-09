@@ -71,7 +71,7 @@ class ProgressLineState extends AppAnimatedState<PlayerProgress> {
         textHeightBehavior: const TextHeightBehavior(
           applyHeightToFirstAscent: false,
         ),
-        uiStyle: style.textStyle.regularFont.buttonTitle.copyWith(
+        uiStyle: style.textStyle.regularFont.simple.copyWith(
           colorHex: style.appSheetStyle.colorHex,
         ),
       );
@@ -122,8 +122,13 @@ class ProgressLineState extends AppAnimatedState<PlayerProgress> {
                     ),
                     if (usernameWidget != null && widget.showUserName)
                       Positioned(
+                        top: 0,
+                        bottom: 0,
                         left: borderRadius,
-                        child: usernameWidget,
+                        child: Container(
+                          alignment: Alignment.center,
+                          child: usernameWidget,
+                        ),
                       ),
                     if (avatarWidget != null)
                       Positioned(

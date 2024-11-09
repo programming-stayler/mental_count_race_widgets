@@ -1,5 +1,6 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
-import 'package:mental_count_race_widgets/utils/date_utils.dart';
 import 'package:mental_count_race_widgets/widgets.dart';
 import 'package:pythagoras_match/pythagoras_match.dart';
 
@@ -48,7 +49,7 @@ class TutorialInfoSection extends StatelessWidget {
       children: [
         Icon(
           Icons.edit,
-          size: 30.toWidth,
+          size: min(30.toWidth, 34),
           color: style.actionColorHex.color,
         ),
         AppPadding.horizontalPadding4,

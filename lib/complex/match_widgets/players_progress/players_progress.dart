@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:mental_count_race_widgets/widgets.dart';
 import 'package:pythagoras_match/pythagoras_match.dart';
@@ -113,7 +115,7 @@ class _ProgressText extends StatelessWidget {
   Widget build(BuildContext context) {
     final style = AppGlobalStyle.of(context).style;
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.end,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         AppPadding.horizontalPadding2,
         AppText(
@@ -123,10 +125,13 @@ class _ProgressText extends StatelessWidget {
           ),
         ),
         AppPadding.horizontalPadding2,
-        AppText(
-          ' / $total',
-          uiStyle: style.textStyle.regularFont.subtitle.copyWith(
-            colorHex: style.neutralColorHex,
+        Container(
+          constraints: BoxConstraints(minWidth: min(30.toWidth, 38)),
+          child: AppText(
+            ' / $total',
+            uiStyle: style.textStyle.regularFont.subtitle.copyWith(
+              colorHex: style.neutralColorHex,
+            ),
           ),
         ),
       ],

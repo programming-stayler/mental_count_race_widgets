@@ -44,60 +44,66 @@ class _FieldsGuideScreenState extends State<FieldsGuideScreen> {
               children: [
                 AppPadding.verticalPadding16,
                 AppPadding.horizontalWrapper16(
-                  child: const AppTextField(
-                    labelText: 'Email',
-                    autofillHints: [AutofillHints.email],
-                    keyboardType: TextInputType.emailAddress,
+                  child: const FieldAligner(
+                    child: AppTextField(
+                      labelText: 'Email',
+                      autofillHints: [AutofillHints.email],
+                      keyboardType: TextInputType.emailAddress,
+                    ),
                   ),
                 ),
-                AppPadding.verticalPadding16,
                 AppPadding.horizontalWrapper16(
-                  child: const AppTextField(
-                    labelText: 'Username',
+                  child: const FieldAligner(
+                    child: AppTextField(
+                      labelText: 'Username',
+                    ),
                   ),
                 ),
-                AppPadding.verticalPadding16,
                 AppPadding.horizontalWrapper16(
-                  child: AppTextField(
-                    labelText: 'Password',
-                    obscureText: !canShowPassword,
-                    suffixIcon: IconButton(
-                      icon: Icon(!canShowPassword
-                          ? Icons.visibility
-                          : Icons.visibility_off),
-                      onPressed: () => setState(() {
-                        canShowPassword = !canShowPassword;
-                      }),
+                  child: FieldAligner(
+                    child: AppTextField(
+                      labelText: 'Password',
+                      obscureText: !canShowPassword,
+                      suffixIcon: IconButton(
+                        icon: Icon(!canShowPassword
+                            ? Icons.visibility
+                            : Icons.visibility_off),
+                        onPressed: () => setState(() {
+                          canShowPassword = !canShowPassword;
+                        }),
+                      ),
                     ),
                   ),
                 ),
                 AppPadding.verticalPadding16,
                 AppPadding.horizontalWrapper16(
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            AppText(
-                              'Switch title - short but bigger',
-                              uiStyle: globalStyle.textStyle.regularFont.simple,
-                            ),
-                            AppText(
-                              'Switch description - much more longer but thinner',
-                              uiStyle:
-                                  globalStyle.textStyle.lightFont.description,
-                            ),
-                          ],
+                  child: FieldAligner(
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              AppText(
+                                'Switch title - short but bigger',
+                                uiStyle: globalStyle.textStyle.regularFont.simple,
+                              ),
+                              AppText(
+                                'Switch description - much more longer but thinner',
+                                uiStyle:
+                                    globalStyle.textStyle.lightFont.description,
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      AppSwitch(
-                        value: switchValue,
-                        onChanged: (value) => setState(
-                          () => switchValue = value,
+                        AppSwitch(
+                          value: switchValue,
+                          onChanged: (value) => setState(
+                            () => switchValue = value,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ],

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:mental_count_race_widgets/widgets.dart';
 
@@ -26,7 +28,7 @@ class MatchPlayerTile extends StatelessWidget {
         );
         icon = BotIcon(
           pace: bot.pace,
-          size: 26.toWidth,
+          size: min(26.toWidth, 32),
         );
       },
       orElse: () {

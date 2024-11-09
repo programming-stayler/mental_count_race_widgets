@@ -46,7 +46,7 @@ class _SplashScreenState extends State<SplashScreen> {
       SizeConfig.instance.init(
         navigatorKey.currentState!.overlay!.context,
       );
-      Navigator.of(context).push(
+      Navigator.of(context).pushReplacement(
         GuidesScreen.getRoute(),
       );
     });

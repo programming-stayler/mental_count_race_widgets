@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:mental_count_race_widgets/widgets.dart';
@@ -297,7 +299,7 @@ class AppSheetBar extends StatelessWidget {
     return Row(
       children: [
         IconButton(
-          icon: Icon(Icons.arrow_back, size: 24.toWidth),
+          icon: Icon(Icons.arrow_back, size: min(24.toWidth, 28)),
           onPressed: onTap ?? Navigator.of(context).pop,
         ),
         const Spacer(),

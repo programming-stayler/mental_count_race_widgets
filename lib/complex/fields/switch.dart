@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -22,7 +24,7 @@ class AppSwitch extends StatelessWidget {
     return AnimatedToggleSwitch.customByHeight(
       current: value,
       values: const [false, true],
-      height: 28.toHeight,
+      height: min(28.toHeight, 36),
       animationCurve: Curves.linear,
       animationDuration: 250.milliseconds,
       onTap: (v) => onChanged(v.tapped?.value ?? !value),

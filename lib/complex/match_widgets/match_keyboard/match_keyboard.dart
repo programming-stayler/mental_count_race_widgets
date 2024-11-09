@@ -119,7 +119,6 @@ class _MatchKeyboardState extends State<MatchKeyboard> {
         mode.onKeyPressed(key);
       },
       answer: (mode) {
-        // TODO: count accuracy
         key.map(
           symbol: (symbol) {
             final answerString = '${mode.answer}${symbol.text}';

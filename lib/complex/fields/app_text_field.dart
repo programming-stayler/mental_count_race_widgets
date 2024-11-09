@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mental_count_race_widgets/widgets.dart';
@@ -101,17 +103,17 @@ class AppTextField extends StatelessWidget {
     final style = AppGlobalStyle.of(context).style;
     final defaultTextColor =
         disabled ? style.neutralColorHex.color : style.borderColorHex.color;
-
+    final fontSize = min(this.fontSize ?? 16.toFont, 18.0);
     final textStyle = editMode
         ? style.textStyle.regularFont.textStyle.copyWith(
-            fontSize: fontSize ?? 16.toFont,
+            fontSize: fontSize,
             fontWeight: fontWeight ?? FontWeight.normal,
             color: textColor ?? defaultTextColor,
             decoration: textDecoration,
             decorationThickness: textDecoration == null ? 0 : null,
           )
         : style.textStyle.regularFont.textStyle.copyWith(
-            fontSize: fontSize ?? 16.toFont,
+            fontSize: fontSize,
             fontWeight: fontWeight ?? FontWeight.normal,
             color: textColor ?? Colors.black,
             decoration: textDecoration,
@@ -124,13 +126,13 @@ class AppTextField extends StatelessWidget {
 
     final nextEditMargin = editMargin ??
         EdgeInsets.symmetric(
-          horizontal: 16.toWidth,
-          vertical: 8.toHeight,
+          horizontal: min(16.toWidth, 18),
+          vertical: min(8.toHeight, 10),
         );
     final nonEditMargin = EdgeInsets.only(
-      left: 16.toWidth,
-      right: 16.toWidth,
-      bottom: 8.toHeight,
+      left: min(16.toWidth, 18),
+      right: min(16.toWidth, 18),
+      bottom: min(8.toHeight, 10),
     );
     final modeMargin = editMode ? nextEditMargin : nonEditMargin;
     final decoration = this.decoration ??

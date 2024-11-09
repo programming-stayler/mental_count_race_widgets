@@ -13,10 +13,11 @@ class LeftPositioned extends Positioned {
   const LeftPositioned({
     super.key,
     super.width,
+    double left = 0,
     required super.child,
   }) : super(
           top: 0,
-          left: 0,
+          left: left,
           bottom: 0,
         );
 }
@@ -25,10 +26,11 @@ class RightPositioned extends Positioned {
   const RightPositioned({
     super.key,
     super.width,
+    double right = 0,
     required super.child,
   }) : super(
           top: 0,
-          right: 0,
+          right: right,
           bottom: 0,
         );
 }

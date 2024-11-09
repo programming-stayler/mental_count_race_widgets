@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:mental_count_race_widgets/widgets.dart';
 
@@ -143,7 +145,11 @@ class AppInputDecoration extends InputDecoration {
           alignLabelWithHint: true,
           contentPadding: contentPadding ??
               EdgeInsets.fromLTRB(
-                  12.toWidth, 23.toHeight, 12.toWidth, 14.toHeight),
+                min(12.toWidth, 16),
+                min(23.toHeight, 26),
+                min(12.toWidth, 16),
+                min(14.toHeight, 18),
+              ),
         );
 
   factory AppInputDecoration.outlineInput({
@@ -219,7 +225,7 @@ class AppInputDecoration extends InputDecoration {
         prefixText: prefixText,
         prefixStyle: prefixStyle,
         editMode: false,
-        contentPadding: EdgeInsets.symmetric(vertical: 15.toHeight),
+        contentPadding: EdgeInsets.symmetric(vertical: min(15.toHeight, 17)),
         suffixIcon: suffixIcon,
         showErrorText: true,
         borderRadius: borderRadius,
@@ -251,7 +257,7 @@ class AppInputDecoration extends InputDecoration {
         // filled: true,
         showErrorText: showErrorText,
         errorMaxLines: errorMaxLines,
-        contentPadding: EdgeInsets.symmetric(vertical: 15.toHeight),
+        contentPadding: EdgeInsets.symmetric(vertical: min(15.toHeight, 17)),
         suffixIcon: onDonePressed != null
             ? Padding(
                 padding: const EdgeInsets.all(2.0),

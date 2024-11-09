@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:mental_count_race_widgets/widgets.dart';
 import 'package:pythagoras_match/pythagoras_match.dart';
@@ -22,6 +23,7 @@ class MatchLimitPicker extends StatefulWidget {
 class _MatchLimitPickerState extends State<MatchLimitPicker> {
   int? limit;
   late MatchLimitType selectedType;
+  final carouselController = CarouselSliderController();
 
   @override
   void initState() {
@@ -32,29 +34,67 @@ class _MatchLimitPickerState extends State<MatchLimitPicker> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        CarouselSlider(
-          options: CarouselOptions(
-            height: 88.toHeight,
-            enableInfiniteScroll: false,
-            initialPage: widget.values.indexOf(selectedType),
-            onPageChanged: (index, _) => onModeChanged(
-              typeValue: widget.values[index],
+    return LayoutBuilder(builder: (context, constrains) {
+      final style = AppGlobalStyle.of(context).style;
+      final index = widget.values.indexOf(selectedType);
+      final children = <Widget>[
+        Center(
+          child: CarouselSlider(
+            carouselController: carouselController,
+            options: CarouselOptions(
+              height: 88.toHeight,
+              enableInfiniteScroll: false,
+              initialPage: index,
+              onPageChanged: (index, _) => onModeChanged(
+                typeValue: widget.values[index],
+              ),
+            ),
+            items: widget.values
+                .map(
+                  (item) => _MatchLimitTypeView(
+                    type: item,
+                    selected: item == selectedType,
+                  ),
+                )
+                .toList(),
+          ),
+        ),
+      ];
+      if (kIsWeb) {
+        final offset = constrains.maxWidth / 3;
+        children.addAll([
+          LeftPositioned(
+            left: offset,
+            child: IconButton(
+              icon: Icon(
+                Icons.keyboard_arrow_left,
+                size: 20.toWidth,
+                color: style.neutralColorHex.color,
+              ),
+              onPressed: () {
+                carouselController.animateToPage(index - 1);
+              },
             ),
           ),
-          items: widget.values
-              .map(
-                (item) => _MatchLimitTypeView(
-                  type: item,
-                  selected: item == selectedType,
-                ),
-              )
-              .toList(),
-        ),
-      ],
-    );
+          RightPositioned(
+            right: offset,
+            child: IconButton(
+              icon: Icon(
+                Icons.keyboard_arrow_right,
+                size: 20.toWidth,
+                color: style.neutralColorHex.color,
+              ),
+              onPressed: () {
+                carouselController.animateToPage(index + 1);
+              },
+            ),
+          ),
+        ]);
+      }
+      return Stack(
+        children: children,
+      );
+    });
   }
 
   void onModeChanged({int? limitValue, MatchLimitType? typeValue}) {

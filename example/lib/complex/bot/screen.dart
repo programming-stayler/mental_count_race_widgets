@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:mental_count_race_widgets/widgets.dart';
 import 'package:pythagoras_match/pythagoras_match.dart';
@@ -55,7 +57,7 @@ class _BotGuideScreenState extends State<BotGuideScreen> {
           AppPadding.verticalPadding16,
           AppPadding.horizontalWrapper8(
             child: SizedBox(
-              height: 44.toHeight,
+              height: min(48.toHeight, 50),
               child: AppActionButton(
                 text: 'Add Bot',
                 onTap: onBotPressed,
@@ -69,17 +71,12 @@ class _BotGuideScreenState extends State<BotGuideScreen> {
   }
 
   void onBotPressed([BotUser? botUser]) {
-    showModalBottomSheet(
-      context: context,
-      builder: (context) {
-        return PaceBotWidget(
-          botUser: botUser,
-          onApplyBot: (value) {
-            setState(() => this.botUser = value);
-            Navigator.of(context).pop();
-          },
-          onCancel: Navigator.of(context).pop,
-        );
+    PaceBotWidget.showModalScreen(
+      context,
+      botUser: botUser,
+      onApplyBot: (value) {
+        setState(() => this.botUser = value);
+        Navigator.of(context).pop();
       },
     );
   }

@@ -32,18 +32,17 @@ class _PlayersProgressGuideScreenState extends State<PlayersProgressGuideScreen>
   @override
   void initState() {
     super.initState();
-    controller = AnimationController(
-      vsync: this,
-    );
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await controller.forward(from: 0.0);
-    });
+    // controller = AnimationController(
+    //   vsync: this,
+    // );
+    // WidgetsBinding.instance.addPostFrameCallback((_) async {
+    //   await controller.forward(from: 0.0);
+    // });
   }
 
   @override
   Widget build(BuildContext context) {
     return AppSheetScaffold(
-      controller: controller,
       topChildren: [
         AppPadding.horizontalWrapper8(
           child: PlayersProgress(
@@ -99,6 +98,7 @@ class _PlayersProgressGuideScreenState extends State<PlayersProgressGuideScreen>
                     child: AppText('+'),
                   ),
                 ),
+                AppPadding.verticalPadding16,
                 AppPadding.horizontalWrapper8(
                   child: ElevatedButton(
                     onPressed: () {
@@ -111,6 +111,7 @@ class _PlayersProgressGuideScreenState extends State<PlayersProgressGuideScreen>
                     child: AppText('Change Results Position'),
                   ),
                 ),
+                AppPadding.verticalPadding16,
                 AppPadding.horizontalWrapper8(
                   child: ElevatedButton(
                     onPressed: Navigator.of(context).pop,

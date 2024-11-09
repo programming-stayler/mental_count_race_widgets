@@ -24,7 +24,7 @@ dependencies:
   numberpicker: 2.1.2
   animated_toggle_switch: 0.8.3
   gauge_indicator: 0.4.3
-  wheel_slider: 1.2.1
+  responsive_builder: 0.7.1
   # Internal
   pythagoras_match:
     git:

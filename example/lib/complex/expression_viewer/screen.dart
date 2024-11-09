@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:mental_count_race_widgets/widgets.dart';
 import 'package:pythagoras/pythagoras.dart';
 
@@ -34,6 +35,7 @@ class _ExpressionViewerScreenState extends State<ExpressionViewerGuideScreen> {
     ],
   );
   late ExpressionViewerController realController;
+  bool showRealViewer = false;
 
   @override
   void initState() {
@@ -64,16 +66,18 @@ class _ExpressionViewerScreenState extends State<ExpressionViewerGuideScreen> {
       ],
       bodyChildren: [
         AppPadding.verticalPadding16,
-        Row(
+        Stack(
           children: [
-            Expanded(
-              child: ExpressionViewer(
-                controller: fakeController,
-              ),
+            ExpressionViewer(
+              controller: fakeController,
+              fraction: 0.65,
             ),
-            Expanded(
+            AnimatedOpacity(
+              duration: 750.milliseconds,
+              opacity: showRealViewer ? 1 : 0,
               child: ExpressionViewer(
                 controller: realController,
+                fraction: 0.3,
               ),
             ),
           ],
@@ -97,6 +101,11 @@ class _ExpressionViewerScreenState extends State<ExpressionViewerGuideScreen> {
   void nextTapped() {
     if (fakeController.currentIndex < fakeController.startItemsCount) {
       fakeController.moveToNext();
+      final currentIndex = fakeController.currentIndex;
+      final startItemsCount = fakeController.startItemsCount;
+      if (currentIndex == startItemsCount - 1) {
+        setState(() => showRealViewer = true);
+      }
       if (fakeController.currentIndex == fakeController.startItemsCount) {
         realController.moveToNext();
       }
