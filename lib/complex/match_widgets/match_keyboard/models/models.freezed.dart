@@ -743,44 +743,48 @@ abstract class _KeyboardSettings implements KeyboardSettings {
 /// @nodoc
 mixin _$KeyboardMode {
   KeyboardSettings get settings => throw _privateConstructorUsedError;
+  bool get disabled => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            KeyboardSettings settings, ValueChanged<KeyModel> onKeyPressed)
+    required TResult Function(KeyboardSettings settings,
+            ValueChanged<KeyModel> onKeyPressed, bool disabled)
         key,
     required TResult Function(
             KeyboardSettings settings,
             String answer,
-            ExpressionViewerController? controller,
             ValueChanged<String> onAnswerChanged,
+            bool disabled,
+            ExpressionViewerController? controller,
             dynamic Function(ExpressionModel, int, int)? onAnswerGiven)
         answer,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            KeyboardSettings settings, ValueChanged<KeyModel> onKeyPressed)?
+    TResult? Function(KeyboardSettings settings,
+            ValueChanged<KeyModel> onKeyPressed, bool disabled)?
         key,
     TResult? Function(
             KeyboardSettings settings,
             String answer,
-            ExpressionViewerController? controller,
             ValueChanged<String> onAnswerChanged,
+            bool disabled,
+            ExpressionViewerController? controller,
             dynamic Function(ExpressionModel, int, int)? onAnswerGiven)?
         answer,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            KeyboardSettings settings, ValueChanged<KeyModel> onKeyPressed)?
+    TResult Function(KeyboardSettings settings,
+            ValueChanged<KeyModel> onKeyPressed, bool disabled)?
         key,
     TResult Function(
             KeyboardSettings settings,
             String answer,
-            ExpressionViewerController? controller,
             ValueChanged<String> onAnswerChanged,
+            bool disabled,
+            ExpressionViewerController? controller,
             dynamic Function(ExpressionModel, int, int)? onAnswerGiven)?
         answer,
     required TResult orElse(),
@@ -819,7 +823,7 @@ abstract class $KeyboardModeCopyWith<$Res> {
           KeyboardMode value, $Res Function(KeyboardMode) then) =
       _$KeyboardModeCopyWithImpl<$Res, KeyboardMode>;
   @useResult
-  $Res call({KeyboardSettings settings});
+  $Res call({KeyboardSettings settings, bool disabled});
 
   $KeyboardSettingsCopyWith<$Res> get settings;
 }
@@ -840,12 +844,17 @@ class _$KeyboardModeCopyWithImpl<$Res, $Val extends KeyboardMode>
   @override
   $Res call({
     Object? settings = null,
+    Object? disabled = null,
   }) {
     return _then(_value.copyWith(
       settings: null == settings
           ? _value.settings
           : settings // ignore: cast_nullable_to_non_nullable
               as KeyboardSettings,
+      disabled: null == disabled
+          ? _value.disabled
+          : disabled // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -866,7 +875,10 @@ abstract class _$$KeyImplCopyWith<$Res> implements $KeyboardModeCopyWith<$Res> {
       __$$KeyImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({KeyboardSettings settings, ValueChanged<KeyModel> onKeyPressed});
+  $Res call(
+      {KeyboardSettings settings,
+      ValueChanged<KeyModel> onKeyPressed,
+      bool disabled});
 
   @override
   $KeyboardSettingsCopyWith<$Res> get settings;
@@ -886,6 +898,7 @@ class __$$KeyImplCopyWithImpl<$Res>
   $Res call({
     Object? settings = null,
     Object? onKeyPressed = null,
+    Object? disabled = null,
   }) {
     return _then(_$KeyImpl(
       settings: null == settings
@@ -896,6 +909,10 @@ class __$$KeyImplCopyWithImpl<$Res>
           ? _value.onKeyPressed
           : onKeyPressed // ignore: cast_nullable_to_non_nullable
               as ValueChanged<KeyModel>,
+      disabled: null == disabled
+          ? _value.disabled
+          : disabled // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -903,16 +920,22 @@ class __$$KeyImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$KeyImpl implements _Key {
-  const _$KeyImpl({required this.settings, required this.onKeyPressed});
+  const _$KeyImpl(
+      {required this.settings,
+      required this.onKeyPressed,
+      this.disabled = false});
 
   @override
   final KeyboardSettings settings;
   @override
   final ValueChanged<KeyModel> onKeyPressed;
+  @override
+  @JsonKey()
+  final bool disabled;
 
   @override
   String toString() {
-    return 'KeyboardMode.key(settings: $settings, onKeyPressed: $onKeyPressed)';
+    return 'KeyboardMode.key(settings: $settings, onKeyPressed: $onKeyPressed, disabled: $disabled)';
   }
 
   @override
@@ -923,11 +946,14 @@ class _$KeyImpl implements _Key {
             (identical(other.settings, settings) ||
                 other.settings == settings) &&
             (identical(other.onKeyPressed, onKeyPressed) ||
-                other.onKeyPressed == onKeyPressed));
+                other.onKeyPressed == onKeyPressed) &&
+            (identical(other.disabled, disabled) ||
+                other.disabled == disabled));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, settings, onKeyPressed);
+  int get hashCode =>
+      Object.hash(runtimeType, settings, onKeyPressed, disabled);
 
   /// Create a copy of KeyboardMode
   /// with the given fields replaced by the non-null parameter values.
@@ -940,54 +966,57 @@ class _$KeyImpl implements _Key {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            KeyboardSettings settings, ValueChanged<KeyModel> onKeyPressed)
+    required TResult Function(KeyboardSettings settings,
+            ValueChanged<KeyModel> onKeyPressed, bool disabled)
         key,
     required TResult Function(
             KeyboardSettings settings,
             String answer,
-            ExpressionViewerController? controller,
             ValueChanged<String> onAnswerChanged,
+            bool disabled,
+            ExpressionViewerController? controller,
             dynamic Function(ExpressionModel, int, int)? onAnswerGiven)
         answer,
   }) {
-    return key(settings, onKeyPressed);
+    return key(settings, onKeyPressed, disabled);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            KeyboardSettings settings, ValueChanged<KeyModel> onKeyPressed)?
+    TResult? Function(KeyboardSettings settings,
+            ValueChanged<KeyModel> onKeyPressed, bool disabled)?
         key,
     TResult? Function(
             KeyboardSettings settings,
             String answer,
-            ExpressionViewerController? controller,
             ValueChanged<String> onAnswerChanged,
+            bool disabled,
+            ExpressionViewerController? controller,
             dynamic Function(ExpressionModel, int, int)? onAnswerGiven)?
         answer,
   }) {
-    return key?.call(settings, onKeyPressed);
+    return key?.call(settings, onKeyPressed, disabled);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            KeyboardSettings settings, ValueChanged<KeyModel> onKeyPressed)?
+    TResult Function(KeyboardSettings settings,
+            ValueChanged<KeyModel> onKeyPressed, bool disabled)?
         key,
     TResult Function(
             KeyboardSettings settings,
             String answer,
-            ExpressionViewerController? controller,
             ValueChanged<String> onAnswerChanged,
+            bool disabled,
+            ExpressionViewerController? controller,
             dynamic Function(ExpressionModel, int, int)? onAnswerGiven)?
         answer,
     required TResult orElse(),
   }) {
     if (key != null) {
-      return key(settings, onKeyPressed);
+      return key(settings, onKeyPressed, disabled);
     }
     return orElse();
   }
@@ -1027,11 +1056,14 @@ class _$KeyImpl implements _Key {
 abstract class _Key implements KeyboardMode {
   const factory _Key(
       {required final KeyboardSettings settings,
-      required final ValueChanged<KeyModel> onKeyPressed}) = _$KeyImpl;
+      required final ValueChanged<KeyModel> onKeyPressed,
+      final bool disabled}) = _$KeyImpl;
 
   @override
   KeyboardSettings get settings;
   ValueChanged<KeyModel> get onKeyPressed;
+  @override
+  bool get disabled;
 
   /// Create a copy of KeyboardMode
   /// with the given fields replaced by the non-null parameter values.
@@ -1052,8 +1084,9 @@ abstract class _$$AnswerImplCopyWith<$Res>
   $Res call(
       {KeyboardSettings settings,
       String answer,
-      ExpressionViewerController? controller,
       ValueChanged<String> onAnswerChanged,
+      bool disabled,
+      ExpressionViewerController? controller,
       dynamic Function(ExpressionModel, int, int)? onAnswerGiven});
 
   @override
@@ -1075,8 +1108,9 @@ class __$$AnswerImplCopyWithImpl<$Res>
   $Res call({
     Object? settings = null,
     Object? answer = null,
-    Object? controller = freezed,
     Object? onAnswerChanged = null,
+    Object? disabled = null,
+    Object? controller = freezed,
     Object? onAnswerGiven = freezed,
   }) {
     return _then(_$AnswerImpl(
@@ -1088,14 +1122,18 @@ class __$$AnswerImplCopyWithImpl<$Res>
           ? _value.answer
           : answer // ignore: cast_nullable_to_non_nullable
               as String,
-      controller: freezed == controller
-          ? _value.controller
-          : controller // ignore: cast_nullable_to_non_nullable
-              as ExpressionViewerController?,
       onAnswerChanged: null == onAnswerChanged
           ? _value.onAnswerChanged
           : onAnswerChanged // ignore: cast_nullable_to_non_nullable
               as ValueChanged<String>,
+      disabled: null == disabled
+          ? _value.disabled
+          : disabled // ignore: cast_nullable_to_non_nullable
+              as bool,
+      controller: freezed == controller
+          ? _value.controller
+          : controller // ignore: cast_nullable_to_non_nullable
+              as ExpressionViewerController?,
       onAnswerGiven: freezed == onAnswerGiven
           ? _value.onAnswerGiven
           : onAnswerGiven // ignore: cast_nullable_to_non_nullable
@@ -1110,8 +1148,9 @@ class _$AnswerImpl implements _Answer {
   const _$AnswerImpl(
       {required this.settings,
       required this.answer,
-      this.controller,
       required this.onAnswerChanged,
+      this.disabled = false,
+      this.controller,
       this.onAnswerGiven});
 
   @override
@@ -1119,15 +1158,18 @@ class _$AnswerImpl implements _Answer {
   @override
   final String answer;
   @override
-  final ExpressionViewerController? controller;
-  @override
   final ValueChanged<String> onAnswerChanged;
+  @override
+  @JsonKey()
+  final bool disabled;
+  @override
+  final ExpressionViewerController? controller;
   @override
   final dynamic Function(ExpressionModel, int, int)? onAnswerGiven;
 
   @override
   String toString() {
-    return 'KeyboardMode.answer(settings: $settings, answer: $answer, controller: $controller, onAnswerChanged: $onAnswerChanged, onAnswerGiven: $onAnswerGiven)';
+    return 'KeyboardMode.answer(settings: $settings, answer: $answer, onAnswerChanged: $onAnswerChanged, disabled: $disabled, controller: $controller, onAnswerGiven: $onAnswerGiven)';
   }
 
   @override
@@ -1138,17 +1180,19 @@ class _$AnswerImpl implements _Answer {
             (identical(other.settings, settings) ||
                 other.settings == settings) &&
             (identical(other.answer, answer) || other.answer == answer) &&
-            (identical(other.controller, controller) ||
-                other.controller == controller) &&
             (identical(other.onAnswerChanged, onAnswerChanged) ||
                 other.onAnswerChanged == onAnswerChanged) &&
+            (identical(other.disabled, disabled) ||
+                other.disabled == disabled) &&
+            (identical(other.controller, controller) ||
+                other.controller == controller) &&
             (identical(other.onAnswerGiven, onAnswerGiven) ||
                 other.onAnswerGiven == onAnswerGiven));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, settings, answer, controller,
-      onAnswerChanged, onAnswerGiven);
+  int get hashCode => Object.hash(runtimeType, settings, answer,
+      onAnswerChanged, disabled, controller, onAnswerGiven);
 
   /// Create a copy of KeyboardMode
   /// with the given fields replaced by the non-null parameter values.
@@ -1161,57 +1205,60 @@ class _$AnswerImpl implements _Answer {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            KeyboardSettings settings, ValueChanged<KeyModel> onKeyPressed)
+    required TResult Function(KeyboardSettings settings,
+            ValueChanged<KeyModel> onKeyPressed, bool disabled)
         key,
     required TResult Function(
             KeyboardSettings settings,
             String answer,
-            ExpressionViewerController? controller,
             ValueChanged<String> onAnswerChanged,
+            bool disabled,
+            ExpressionViewerController? controller,
             dynamic Function(ExpressionModel, int, int)? onAnswerGiven)
         answer,
   }) {
-    return answer(
-        settings, this.answer, controller, onAnswerChanged, onAnswerGiven);
+    return answer(settings, this.answer, onAnswerChanged, disabled, controller,
+        onAnswerGiven);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            KeyboardSettings settings, ValueChanged<KeyModel> onKeyPressed)?
+    TResult? Function(KeyboardSettings settings,
+            ValueChanged<KeyModel> onKeyPressed, bool disabled)?
         key,
     TResult? Function(
             KeyboardSettings settings,
             String answer,
-            ExpressionViewerController? controller,
             ValueChanged<String> onAnswerChanged,
+            bool disabled,
+            ExpressionViewerController? controller,
             dynamic Function(ExpressionModel, int, int)? onAnswerGiven)?
         answer,
   }) {
-    return answer?.call(
-        settings, this.answer, controller, onAnswerChanged, onAnswerGiven);
+    return answer?.call(settings, this.answer, onAnswerChanged, disabled,
+        controller, onAnswerGiven);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            KeyboardSettings settings, ValueChanged<KeyModel> onKeyPressed)?
+    TResult Function(KeyboardSettings settings,
+            ValueChanged<KeyModel> onKeyPressed, bool disabled)?
         key,
     TResult Function(
             KeyboardSettings settings,
             String answer,
-            ExpressionViewerController? controller,
             ValueChanged<String> onAnswerChanged,
+            bool disabled,
+            ExpressionViewerController? controller,
             dynamic Function(ExpressionModel, int, int)? onAnswerGiven)?
         answer,
     required TResult orElse(),
   }) {
     if (answer != null) {
-      return answer(
-          settings, this.answer, controller, onAnswerChanged, onAnswerGiven);
+      return answer(settings, this.answer, onAnswerChanged, disabled,
+          controller, onAnswerGiven);
     }
     return orElse();
   }
@@ -1252,16 +1299,19 @@ abstract class _Answer implements KeyboardMode {
   const factory _Answer(
           {required final KeyboardSettings settings,
           required final String answer,
-          final ExpressionViewerController? controller,
           required final ValueChanged<String> onAnswerChanged,
+          final bool disabled,
+          final ExpressionViewerController? controller,
           final dynamic Function(ExpressionModel, int, int)? onAnswerGiven}) =
       _$AnswerImpl;
 
   @override
   KeyboardSettings get settings;
   String get answer;
-  ExpressionViewerController? get controller;
   ValueChanged<String> get onAnswerChanged;
+  @override
+  bool get disabled;
+  ExpressionViewerController? get controller;
   dynamic Function(ExpressionModel, int, int)? get onAnswerGiven;
 
   /// Create a copy of KeyboardMode

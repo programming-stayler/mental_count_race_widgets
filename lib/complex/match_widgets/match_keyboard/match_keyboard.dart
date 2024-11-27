@@ -114,6 +114,7 @@ class _MatchKeyboardState extends State<MatchKeyboard> {
   }
 
   void onKeyPressed(KeyModel key) {
+    if (widget.mode.disabled) return;
     widget.mode.map(
       key: (mode) {
         mode.onKeyPressed(key);

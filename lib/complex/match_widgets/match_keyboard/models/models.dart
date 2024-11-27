@@ -68,13 +68,15 @@ class KeyboardMode with _$KeyboardMode {
   const factory KeyboardMode.key({
     required KeyboardSettings settings,
     required ValueChanged<KeyModel> onKeyPressed,
+    @Default(false) bool disabled,
   }) = _Key;
 
   const factory KeyboardMode.answer({
     required KeyboardSettings settings,
     required String answer,
-    ExpressionViewerController? controller,
     required ValueChanged<String> onAnswerChanged,
+    @Default(false) bool disabled,
+    ExpressionViewerController? controller,
     Function(ExpressionModel, int, int)? onAnswerGiven,
   }) = _Answer;
 }
