@@ -34,126 +34,121 @@ class _ComplexGuideScreenState extends State<ComplexGuideScreen> {
   @override
   Widget build(BuildContext context) {
     final style = AppGlobalStyle.of(context).style;
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Complex Guide'),
-      ),
-      body: Center(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              InkWell(
-                child: AppText(
-                  'Animation',
-                  textAlign: TextAlign.center,
-                  uiStyle: style.textStyle.boldFont.simple,
-                ),
-                onTap: () => Navigator.of(context).push(
-                  AnimationGuideScreen.getRoute(),
-                ),
+    return Center(
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            InkWell(
+              child: AppText(
+                'Animation',
+                textAlign: TextAlign.center,
+                uiStyle: style.textStyle.boldFont.simple,
               ),
-              AppPadding.verticalPadding32,
-              InkWell(
-                child: AppText(
-                  'App Sheet',
-                  textAlign: TextAlign.center,
-                  uiStyle: style.textStyle.boldFont.simple,
-                ),
-                onTap: () => Navigator.of(context).push(
-                  AppSheetGuideScreen.getRoute(),
-                ),
+              onTap: () => Navigator.of(context).push(
+                AnimationGuideScreen.getRoute(),
               ),
-              AppPadding.verticalPadding32,
-              InkWell(
-                child: AppText(
-                  'Keyboard',
-                  textAlign: TextAlign.center,
-                  uiStyle: style.textStyle.boldFont.simple,
-                ),
-                onTap: () => Navigator.of(context).push(
-                  KeyboardGuideScreen.getRoute(),
-                ),
+            ),
+            AppPadding.verticalPadding32,
+            InkWell(
+              child: AppText(
+                'App Sheet',
+                textAlign: TextAlign.center,
+                uiStyle: style.textStyle.boldFont.simple,
               ),
-              AppPadding.verticalPadding32,
-              InkWell(
-                child: AppText(
-                  'Expression Viewer',
-                  textAlign: TextAlign.center,
-                  uiStyle: style.textStyle.boldFont.simple,
-                ),
-                onTap: () => Navigator.of(context).push(
-                  ExpressionViewerGuideScreen.getRoute(),
-                ),
+              onTap: () => Navigator.of(context).push(
+                AppSheetGuideScreen.getRoute(),
               ),
-              AppPadding.verticalPadding32,
-              InkWell(
-                child: AppText(
-                  'Players Progress',
-                  textAlign: TextAlign.center,
-                  uiStyle: style.textStyle.boldFont.simple,
-                ),
-                onTap: () => Navigator.of(context).push(
-                  PlayersProgressGuideScreen.getRoute(),
-                ),
+            ),
+            AppPadding.verticalPadding32,
+            InkWell(
+              child: AppText(
+                'Keyboard',
+                textAlign: TextAlign.center,
+                uiStyle: style.textStyle.boldFont.simple,
               ),
-              AppPadding.verticalPadding32,
-              InkWell(
-                child: AppText(
-                  'Graphic',
-                  textAlign: TextAlign.center,
-                  uiStyle: style.textStyle.boldFont.simple,
-                ),
-                onTap: () => Navigator.of(context).push(
-                  ChartsGuideScreen.getRoute(),
-                ),
+              onTap: () => Navigator.of(context).push(
+                KeyboardGuideScreen.getRoute(),
               ),
-              AppPadding.verticalPadding32,
-              InkWell(
-                child: AppText(
-                  'Pickers',
-                  textAlign: TextAlign.center,
-                  uiStyle: style.textStyle.boldFont.simple,
-                ),
-                onTap: () => Navigator.of(context).push(
-                  PickersGuideScreen.getRoute(),
-                ),
+            ),
+            AppPadding.verticalPadding32,
+            InkWell(
+              child: AppText(
+                'Expression Viewer',
+                textAlign: TextAlign.center,
+                uiStyle: style.textStyle.boldFont.simple,
               ),
-              AppPadding.verticalPadding32,
-              InkWell(
-                child: AppText(
-                  'Fields',
-                  textAlign: TextAlign.center,
-                  uiStyle: style.textStyle.boldFont.simple,
-                ),
-                onTap: () => Navigator.of(context).push(
-                  FieldsGuideScreen.getRoute(),
-                ),
+              onTap: () => Navigator.of(context).push(
+                ExpressionViewerGuideScreen.getRoute(),
               ),
-              AppPadding.verticalPadding32,
-              InkWell(
-                child: AppText(
-                  'Tutorial Prototype',
-                  textAlign: TextAlign.center,
-                  uiStyle: style.textStyle.boldFont.simple,
-                ),
-                onTap: () => Navigator.of(context).push(
-                  TutorialPrototypeScreen.getRoute(),
-                ),
+            ),
+            AppPadding.verticalPadding32,
+            InkWell(
+              child: AppText(
+                'Players Progress',
+                textAlign: TextAlign.center,
+                uiStyle: style.textStyle.boldFont.simple,
               ),
-              AppPadding.verticalPadding32,
-              InkWell(
-                child: AppText(
-                  'Bot',
-                  textAlign: TextAlign.center,
-                  uiStyle: style.textStyle.boldFont.simple,
-                ),
-                onTap: () => Navigator.of(context).push(
-                  BotGuideScreen.getRoute(),
-                ),
+              onTap: () => Navigator.of(context).push(
+                PlayersProgressGuideScreen.getRoute(),
               ),
-            ],
-          ),
+            ),
+            AppPadding.verticalPadding32,
+            InkWell(
+              child: AppText(
+                'Graphic',
+                textAlign: TextAlign.center,
+                uiStyle: style.textStyle.boldFont.simple,
+              ),
+              onTap: () => Navigator.of(context).push(
+                ChartsGuideScreen.getRoute(),
+              ),
+            ),
+            AppPadding.verticalPadding32,
+            InkWell(
+              child: AppText(
+                'Pickers',
+                textAlign: TextAlign.center,
+                uiStyle: style.textStyle.boldFont.simple,
+              ),
+              onTap: () => Navigator.of(context).push(
+                PickersGuideScreen.getRoute(),
+              ),
+            ),
+            AppPadding.verticalPadding32,
+            InkWell(
+              child: AppText(
+                'Fields',
+                textAlign: TextAlign.center,
+                uiStyle: style.textStyle.boldFont.simple,
+              ),
+              onTap: () => Navigator.of(context).push(
+                FieldsGuideScreen.getRoute(),
+              ),
+            ),
+            AppPadding.verticalPadding32,
+            InkWell(
+              child: AppText(
+                'Tutorial Prototype',
+                textAlign: TextAlign.center,
+                uiStyle: style.textStyle.boldFont.simple,
+              ),
+              onTap: () => Navigator.of(context).push(
+                TutorialPrototypeScreen.getRoute(),
+              ),
+            ),
+            AppPadding.verticalPadding32,
+            InkWell(
+              child: AppText(
+                'Bot',
+                textAlign: TextAlign.center,
+                uiStyle: style.textStyle.boldFont.simple,
+              ),
+              onTap: () => Navigator.of(context).push(
+                BotGuideScreen.getRoute(),
+              ),
+            ),
+          ],
         ),
       ),
     );

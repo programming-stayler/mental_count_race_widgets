@@ -23,62 +23,78 @@ class _PlayerAnswersGraphicState extends State<PlayerAnswersGraphic> {
   @override
   Widget build(BuildContext context) {
     final style = AppGlobalStyle.of(context).style;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        AppPadding.horizontalWrapper16(
-          child: AnswersGraphic(
-            answers: widget.answers,
-            showingIndicators: [selectedIndex],
-          ),
+    return AppContainer.fromStyle(
+      style: style.containerStyle.copyWith(
+        decoration: style.containerStyle.decoration?.copyWith(
+          colorHex: style.appSheetStyle.colorHex,
         ),
-        AppPadding.verticalPadding16,
-        CarouselSlider.builder(
-          itemBuilder: (context, index, _) {
-            final answer = widget.answers[index];
-            return Row(
-              children: [
-                AppText(
-                  '${index + 1}.',
-                  uiStyle: style.textStyle.regularFont.tileTitle,
-                ),
-                Expanded(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      ExpressionText(
-                        model: ExpressionTextModel.expressionAnswer(
-                          answer: answer,
-                        ),
-                        selected: index == selectedIndex,
-                      ),
-                      AppPadding.horizontalPadding4,
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 3),
-                        child: AppText(
-                          '(${(answer.msTaken / 1000).toStringAsFixed(2)})',
-                          uiStyle: style.textStyle.lightFont.hint.copyWith(
-                            colorHex: style.neutralColorHex,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          AppPadding.verticalPadding8,
+          AppText(
+            'Answers speed',
+            textAlign: TextAlign.center,
+            uiStyle: style.textStyle.regularFont.tileTitle,
+          ),
+          AppPadding.verticalPadding16,
+          AppPadding.horizontalWrapper16(
+            child: AnswersGraphic(
+              answers: widget.answers,
+              showingIndicators: [selectedIndex],
+            ),
+          ),
+          AppPadding.verticalPadding16,
+          CarouselSlider.builder(
+            itemBuilder: (context, index, _) {
+              final answer = widget.answers[index];
+              return Row(
+                children: [
+                  AppText(
+                    '${index + 1}.',
+                    uiStyle: style.textStyle.regularFont.tileTitle,
+                  ),
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Expanded(
+                          child: ExpressionText(
+                            model: ExpressionTextModel.expressionAnswer(
+                              answer: answer,
+                            ),
+                            selected: index == selectedIndex,
                           ),
                         ),
-                      ),
-                    ],
+                        AppPadding.horizontalPadding4,
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 4),
+                          child: AppText(
+                            '(${(answer.msTaken / 1000).toStringAsFixed(2)})',
+                            uiStyle: style.textStyle.lightFont.hint.copyWith(
+                              colorHex: style.neutralColorHex,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
-            );
-          },
-          options: _CarouselOptions(
-            onPageChanged: (index, _) {
-              setState(() {
-                selectedIndex = index;
-              });
+                ],
+              );
             },
+            options: _CarouselOptions(
+              onPageChanged: (index, _) {
+                setState(() {
+                  selectedIndex = index;
+                });
+              },
+            ),
+            itemCount: widget.answers.length,
           ),
-          itemCount: widget.answers.length,
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
@@ -117,7 +133,7 @@ class AnswersGraphic extends StatelessWidget {
         LineChartData(
           lineTouchData: _LineTouchData(),
           lineBarsData: [lineBarsData],
-          titlesData: _FlTitlesData(),
+          titlesData: _FlTitlesData(style),
           gridData: const FlGridData(show: false),
           borderData: _FlBorderData(borderColor: style.borderColorHex.color),
           minY: 0,
@@ -129,14 +145,14 @@ class AnswersGraphic extends StatelessWidget {
 }
 
 final belowBarGradient = LinearGradient(
-  begin: Alignment.bottomCenter,
-  end: Alignment.topCenter,
+  begin: Alignment.topCenter,
+  end: Alignment.bottomCenter,
   colors: complexityColors.map((color) => color.withOpacity(0.4)).toList(),
 );
 
 const generalGradient = LinearGradient(
-  begin: Alignment.bottomCenter,
-  end: Alignment.topCenter,
+  begin: Alignment.topCenter,
+  end: Alignment.bottomCenter,
   colors: complexityColors,
 );
 
@@ -153,21 +169,31 @@ class _FlBorderData extends FlBorderData {
 }
 
 class _FlTitlesData extends FlTitlesData {
-  _FlTitlesData()
+  _FlTitlesData(AppStyleSystem style)
       : super(
           rightTitles: const AxisTitles(),
           topTitles: const AxisTitles(),
-          bottomTitles: const AxisTitles(
-            axisNameWidget: Text('Chronology'),
+          bottomTitles: AxisTitles(
+            axisNameWidget: AppText(
+              'Chronology',
+              uiStyle: style.textStyle.lightFont.description.copyWith(
+                colorHex: style.neutralColorHex,
+              ),
+            ),
             axisNameSize: 24,
-            sideTitles: SideTitles(
+            sideTitles: const SideTitles(
               reservedSize: 0,
             ),
           ),
-          leftTitles: const AxisTitles(
-            axisNameWidget: Text('Speed (ans/min)'),
+          leftTitles: AxisTitles(
+            axisNameWidget: AppText(
+              'Ans/min',
+              uiStyle: style.textStyle.lightFont.description.copyWith(
+                colorHex: style.neutralColorHex,
+              ),
+            ),
             axisNameSize: 24,
-            sideTitles: SideTitles(
+            sideTitles: const SideTitles(
               reservedSize: 0,
             ),
           ),

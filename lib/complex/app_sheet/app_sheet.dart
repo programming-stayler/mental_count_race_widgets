@@ -310,3 +310,75 @@ class AppSheetBar extends StatelessWidget {
     );
   }
 }
+
+class WebAppSheetScaffold extends StatefulWidget {
+  final Widget topChild;
+  final Widget child;
+  final AnimationController? controller;
+  final VoidCallback? didAppearCallback;
+  final VoidCallback? willAppearCallback;
+
+  const WebAppSheetScaffold({
+    super.key,
+    required this.topChild,
+    required this.child,
+    this.controller,
+    this.didAppearCallback,
+    this.willAppearCallback,
+  });
+
+  @override
+  State<WebAppSheetScaffold> createState() => _WebAppSheetScaffoldState();
+}
+
+class _WebAppSheetScaffoldState extends State<WebAppSheetScaffold>
+    with SingleTickerProviderStateMixin {
+  late AnimationController controller;
+  var showBody = false;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = widget.controller ??
+        AnimationController(
+          vsync: this,
+          duration: 350.milliseconds,
+        );
+    if (widget.controller == null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        widget.willAppearCallback?.call();
+        controller.forward(from: 0.0).then(
+          (value) {
+            widget.didAppearCallback?.call();
+            setState(() => showBody = true);
+          },
+        );
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      child: BGWrapper(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            AppSheet(
+              type: AppSheetType.fromTop,
+              controller: widget.controller,
+              children: [widget.topChild],
+            ),
+            Expanded(
+              child: AnimatedOpacity(
+                opacity: showBody ? 1 : 0,
+                duration: 150.milliseconds,
+                child: widget.child,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
