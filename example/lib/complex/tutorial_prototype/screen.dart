@@ -1,5 +1,9 @@
+import 'package:example/complex/screen.dart';
+import 'package:example/routes.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mental_count_race_widgets/widgets.dart';
 import 'package:pythagoras/pythagoras.dart';
 import 'package:pythagoras_match/pythagoras_match.dart';
@@ -13,12 +17,12 @@ class TutorialPrototypeScreen extends StatefulWidget {
   State<TutorialPrototypeScreen> createState() =>
       _TutorialPrototypeScreenState();
 
-  static PageRoute<TutorialPrototypeScreen> getRoute() {
-    const settings = RouteSettings(name: route);
-
-    return MaterialPageRoute(
-      builder: (_) => const TutorialPrototypeScreen(),
-      settings: settings,
+  static GoRoute buildRoute() {
+    return AppTransitionRoute(
+      path: TutorialPrototypeScreen.route,
+      builder: (context, state) {
+        return const TutorialPrototypeScreen();
+      },
     );
   }
 }
@@ -94,9 +98,12 @@ class _TutorialPrototypeScreenState extends State<TutorialPrototypeScreen> {
     final semiBoldFont = style.textStyle.semiBoldFont;
     return AppSheetScaffold(
       topChildren: [
-        AppSheetBar(
+        WebAppBar(
+          head: kIsWeb
+              ? buildAppBarHead(context)
+              : buildBackButton(() => context.go(ComplexGuideScreen.route)),
           title: AppText(
-            'Tutorial',
+            'Tutorial Guide',
             uiStyle: style.textStyle.regularFont.tileTitle,
           ),
         ),

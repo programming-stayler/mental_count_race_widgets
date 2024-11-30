@@ -1,4 +1,8 @@
+import 'package:example/complex/screen.dart';
+import 'package:example/routes.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mental_count_race_widgets/widgets.dart';
 
 class AppSheetGuideScreen extends StatefulWidget {
@@ -9,12 +13,12 @@ class AppSheetGuideScreen extends StatefulWidget {
   @override
   State<AppSheetGuideScreen> createState() => _AppSheetGuideScreenState();
 
-  static PageRoute<AppSheetGuideScreen> getRoute() {
-    const settings = RouteSettings(name: route);
-
-    return MaterialPageRoute(
-      builder: (_) => const AppSheetGuideScreen(),
-      settings: settings,
+  static GoRoute buildRoute() {
+    return AppTransitionRoute(
+      path: AppSheetGuideScreen.route,
+      builder: (context, state) {
+        return const AppSheetGuideScreen();
+      },
     );
   }
 }
@@ -25,7 +29,10 @@ class _AppSheetGuideScreenState extends State<AppSheetGuideScreen> {
     final globalStyle = AppGlobalStyle.of(context).style;
     return AppSheetScaffold(
       topChildren: [
-        AppSheetBar(
+        WebAppBar(
+          head: kIsWeb
+              ? buildAppBarHead(context)
+              : buildBackButton(() => context.go(ComplexGuideScreen.route)),
           title: AppText(
             'App Sheet Guide',
             uiStyle: globalStyle.textStyle.regularFont.tileTitle,

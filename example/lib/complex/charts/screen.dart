@@ -1,5 +1,9 @@
+import 'package:example/complex/screen.dart';
+import 'package:example/routes.dart';
 import 'package:faker/faker.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mental_count_race_widgets/widgets.dart';
 import 'package:pythagoras/pythagoras.dart';
 import 'package:pythagoras_match/pythagoras_match.dart';
@@ -12,19 +16,20 @@ class ChartsGuideScreen extends StatefulWidget {
   @override
   State<ChartsGuideScreen> createState() => _ChartsGuideScreenState();
 
-  static PageRoute<ChartsGuideScreen> getRoute() {
-    const settings = RouteSettings(name: route);
-
-    return MaterialPageRoute(
-      builder: (_) => const ChartsGuideScreen(),
-      settings: settings,
+  static GoRoute buildRoute() {
+    return AppTransitionRoute(
+      path: ChartsGuideScreen.route,
+      builder: (context, state) {
+        return const ChartsGuideScreen();
+      },
     );
   }
 }
 
 class _ChartsGuideScreenState extends State<ChartsGuideScreen> {
-  final faker = Faker();
   List<ExpressionAnswer> answers = [];
+  final faker = Faker();
+  var speed = 25;
 
   @override
   void initState() {
@@ -37,7 +42,10 @@ class _ChartsGuideScreenState extends State<ChartsGuideScreen> {
     final globalStyle = AppGlobalStyle.of(context).style;
     return AppSheetScaffold(
       topChildren: [
-        AppSheetBar(
+        WebAppBar(
+          head: kIsWeb
+              ? buildAppBarHead(context)
+              : buildBackButton(() => context.go(ComplexGuideScreen.route)),
           title: AppText(
             'Charts Guide',
             uiStyle: globalStyle.textStyle.regularFont.tileTitle,
@@ -50,19 +58,52 @@ class _ChartsGuideScreenState extends State<ChartsGuideScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                AppPadding.verticalPadding16,
-                AppPadding.horizontalWrapper16(
-                  child: PlayerAnswersGraphic(
-                    answers: answers,
+                Container(
+                  constraints: const BoxConstraints(maxWidth: 800),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      AppPadding.verticalPadding16,
+                      AppPadding.horizontalWrapper16(
+                        child: PlayerAnswersGraphic(
+                          answers: answers,
+                        ),
+                      ),
+                      AppPadding.verticalPadding16,
+                      AppPadding.horizontalWrapper16(
+                        child: AppActionButton(
+                          text: 'Regenerate',
+                          onTap: generateAnswers,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 AppPadding.verticalPadding16,
-                AppPadding.horizontalWrapper16(
-                  child: AppActionButton(
-                    text: 'Regenerate',
-                    onTap: generateAnswers,
+                Container(
+                  constraints: const BoxConstraints(maxWidth: 800),
+                  child: AppPadding.horizontalWrapper16(
+                    child: SpeedValueWidget(
+                      speed: speed,
+                    ),
                   ),
                 ),
+                AppPadding.verticalPadding16,
+                Container(
+                  constraints: const BoxConstraints(maxWidth: 800),
+                  child: AppPadding.horizontalWrapper16(
+                    child: Slider(
+                      value: speed.toDouble(),
+                      min: minSpeed.toDouble(),
+                      max: maxSpeed.toDouble(),
+                      onChanged: (value) => setState(() {
+                        speed = value.toInt();
+                      }),
+                    ),
+                  ),
+                ),
+                AppPadding.verticalPadding16,
+                SizedBox(height: context.padding.bottom),
               ],
             ),
           ),

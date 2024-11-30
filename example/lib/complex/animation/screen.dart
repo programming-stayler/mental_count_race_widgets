@@ -1,5 +1,9 @@
+import 'package:example/complex/screen.dart';
+import 'package:example/routes.dart';
 import 'package:faker/faker.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mental_count_race_widgets/widgets.dart';
 import 'package:pythagoras_match/pythagoras_match.dart';
 
@@ -11,12 +15,12 @@ class AnimationGuideScreen extends StatefulWidget {
   @override
   State<AnimationGuideScreen> createState() => _AnimationGuideScreenState();
 
-  static PageRoute<AnimationGuideScreen> getRoute() {
-    const settings = RouteSettings(name: route);
-
-    return MaterialPageRoute(
-      builder: (_) => const AnimationGuideScreen(),
-      settings: settings,
+  static GoRoute buildRoute() {
+    return AppTransitionRoute(
+      path: AnimationGuideScreen.route,
+      builder: (context, state) {
+        return const AnimationGuideScreen();
+      },
     );
   }
 }
@@ -41,7 +45,10 @@ class _AnimationGuideScreenState extends State<AnimationGuideScreen> {
     );
     return AnimatedAppSheetScaffold(
       topChildren: [
-        AppSheetBar(
+        WebAppBar(
+          head: kIsWeb
+              ? buildAppBarHead(context)
+              : buildBackButton(() => context.go(ComplexGuideScreen.route)),
           title: AppText(
             'Animation Guide',
             uiStyle: globalStyle.textStyle.regularFont.tileTitle,

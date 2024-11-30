@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:mental_count_race_widgets/widgets.dart';
 
@@ -20,7 +22,7 @@ class AppPadding {
 
   static Widget get horizontalPadding20 => SizedBox(width: 20.toWidth);
 
-  static Widget get horizontalPadding24 => SizedBox(width: 24.toWidth);
+  static Widget get horizontalPadding24 => SizedBox(width: min(24.toWidth, 28));
 
   static Widget get horizontalPadding32 => SizedBox(width: 32.toWidth);
 

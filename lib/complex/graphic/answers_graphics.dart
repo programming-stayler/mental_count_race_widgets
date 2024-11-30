@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
@@ -49,39 +51,42 @@ class _PlayerAnswersGraphicState extends State<PlayerAnswersGraphic> {
           CarouselSlider.builder(
             itemBuilder: (context, index, _) {
               final answer = widget.answers[index];
-              return Row(
-                children: [
-                  AppText(
-                    '${index + 1}.',
-                    uiStyle: style.textStyle.regularFont.tileTitle,
-                  ),
-                  Expanded(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Expanded(
-                          child: ExpressionText(
-                            model: ExpressionTextModel.expressionAnswer(
-                              answer: answer,
-                            ),
-                            selected: index == selectedIndex,
-                          ),
-                        ),
-                        AppPadding.horizontalPadding4,
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 4),
-                          child: AppText(
-                            '(${(answer.msTaken / 1000).toStringAsFixed(2)})',
-                            uiStyle: style.textStyle.lightFont.hint.copyWith(
-                              colorHex: style.neutralColorHex,
-                            ),
-                          ),
-                        ),
-                      ],
+              return Container(
+                color: Colors.amberAccent,
+                child: Row(
+                  children: [
+                    AppText(
+                      '${index + 1}.',
+                      uiStyle: style.textStyle.regularFont.tileTitle,
                     ),
-                  ),
-                ],
+                    Expanded(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Expanded(
+                            child: ExpressionText(
+                              model: ExpressionTextModel.expressionAnswer(
+                                answer: answer,
+                              ),
+                              selected: index == selectedIndex,
+                            ),
+                          ),
+                          AppPadding.horizontalPadding4,
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 4),
+                            child: AppText(
+                              '(${(answer.msTaken / 1000).toStringAsFixed(2)})',
+                              uiStyle: style.textStyle.lightFont.hint.copyWith(
+                                colorHex: style.neutralColorHex,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               );
             },
             options: _CarouselOptions(
@@ -103,7 +108,7 @@ class _CarouselOptions extends CarouselOptions {
   _CarouselOptions({
     super.onPageChanged,
   }) : super(
-          height: 140.toHeight,
+          height: min(140.toHeight, 160),
           viewportFraction: 0.35,
           enableInfiniteScroll: false,
           scrollDirection: Axis.vertical,

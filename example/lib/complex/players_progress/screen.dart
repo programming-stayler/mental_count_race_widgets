@@ -1,6 +1,8 @@
 import 'package:collection/collection.dart';
+import 'package:example/complex/screen.dart';
 import 'package:flutter/material.dart';
 import 'package:faker/faker.dart' as faker;
+import 'package:go_router/go_router.dart';
 import 'package:pythagoras_match/pythagoras_match.dart';
 import 'package:mental_count_race_widgets/widgets.dart';
 
@@ -13,12 +15,12 @@ class PlayersProgressGuideScreen extends StatefulWidget {
   State<PlayersProgressGuideScreen> createState() =>
       _PlayersProgressGuideScreenState();
 
-  static PageRoute<PlayersProgressGuideScreen> getRoute() {
-    const settings = RouteSettings(name: route);
-
-    return MaterialPageRoute(
-      builder: (_) => const PlayersProgressGuideScreen(),
-      settings: settings,
+  static GoRoute buildRoute() {
+    return AppTransitionRoute(
+      path: PlayersProgressGuideScreen.route,
+      builder: (context, state) {
+        return const PlayersProgressGuideScreen();
+      },
     );
   }
 }
@@ -114,7 +116,7 @@ class _PlayersProgressGuideScreenState extends State<PlayersProgressGuideScreen>
                 AppPadding.verticalPadding16,
                 AppPadding.horizontalWrapper8(
                   child: ElevatedButton(
-                    onPressed: Navigator.of(context).pop,
+                    onPressed: () => context.go(ComplexGuideScreen.route),
                     child: AppText('Back'),
                   ),
                 ),

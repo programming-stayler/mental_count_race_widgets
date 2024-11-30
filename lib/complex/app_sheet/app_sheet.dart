@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:mental_count_race_widgets/widgets.dart';
@@ -282,6 +283,36 @@ class _AnimatedAppSheetScaffoldState extends State<AnimatedAppSheetScaffold>
   }
 }
 
+class WebAppBar extends StatelessWidget {
+  final Widget? head;
+  final Widget? title;
+  final Widget? tail;
+
+  const WebAppBar({
+    super.key,
+    this.head,
+    this.title,
+    this.tail,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        vertical: kIsWeb ? 8.toHeight : 0,
+      ),
+      child: Row(
+        children: [
+          head ?? const SizedBox(),
+          const Spacer(),
+          if (title != null) title!,
+          Expanded(child: tail ?? const SizedBox()),
+        ],
+      ),
+    );
+  }
+}
+
 class AppSheetBar extends StatelessWidget {
   final Widget title;
   final Widget? tail;
@@ -298,6 +329,7 @@ class AppSheetBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
+        AppPadding.horizontalPadding4,
         IconButton(
           icon: Icon(Icons.arrow_back, size: min(24.toWidth, 28)),
           onPressed: onTap ?? Navigator.of(context).pop,
@@ -306,6 +338,7 @@ class AppSheetBar extends StatelessWidget {
         title,
         const Spacer(),
         if (tail != null) tail! else AppPadding.horizontalPadding24,
+        AppPadding.horizontalPadding4,
       ],
     );
   }

@@ -1,7 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:example/complex/screen.dart';
+import 'package:example/routes.dart';
 import 'package:faker/faker.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mental_count_race_widgets/widgets.dart';
 import 'package:pythagoras/pythagoras.dart';
 import 'package:pythagoras_match/pythagoras_match.dart';
@@ -15,12 +19,12 @@ class ExpressionViewerGuideScreen extends StatefulWidget {
   State<ExpressionViewerGuideScreen> createState() =>
       _ExpressionViewerScreenState();
 
-  static PageRoute<ExpressionViewerGuideScreen> getRoute() {
-    const settings = RouteSettings(name: route);
-
-    return MaterialPageRoute(
-      builder: (_) => const ExpressionViewerGuideScreen(),
-      settings: settings,
+  static GoRoute buildRoute() {
+    return AppTransitionRoute(
+      path: ExpressionViewerGuideScreen.route,
+      builder: (context, state) {
+        return const ExpressionViewerGuideScreen();
+      },
     );
   }
 }
@@ -70,7 +74,10 @@ class _ExpressionViewerScreenState extends State<ExpressionViewerGuideScreen> {
     final globalStyle = AppGlobalStyle.of(context).style;
     return AppSheetScaffold(
       topChildren: [
-        AppSheetBar(
+        WebAppBar(
+          head: kIsWeb
+              ? buildAppBarHead(context)
+              : buildBackButton(() => context.go(ComplexGuideScreen.route)),
           title: AppText(
             'Expression Viewer Guide',
             uiStyle: globalStyle.textStyle.regularFont.tileTitle,

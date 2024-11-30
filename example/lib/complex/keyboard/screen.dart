@@ -1,4 +1,8 @@
+import 'package:example/complex/screen.dart';
+import 'package:example/routes.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mental_count_race_widgets/widgets.dart';
 
 class KeyboardGuideScreen extends StatefulWidget {
@@ -9,12 +13,12 @@ class KeyboardGuideScreen extends StatefulWidget {
   @override
   State<KeyboardGuideScreen> createState() => _KeyboardGuideScreenState();
 
-  static PageRoute<KeyboardGuideScreen> getRoute() {
-    const settings = RouteSettings(name: route);
-
-    return MaterialPageRoute(
-      builder: (_) => const KeyboardGuideScreen(),
-      settings: settings,
+  static GoRoute buildRoute() {
+    return AppTransitionRoute(
+      path: KeyboardGuideScreen.route,
+      builder: (context, state) {
+        return const KeyboardGuideScreen();
+      },
     );
   }
 }
@@ -27,7 +31,10 @@ class _KeyboardGuideScreenState extends State<KeyboardGuideScreen> {
     final globalStyle = AppGlobalStyle.of(context).style;
     return AppSheetScaffold(
       topChildren: [
-        AppSheetBar(
+        WebAppBar(
+          head: kIsWeb
+              ? buildAppBarHead(context)
+              : buildBackButton(() => context.go(ComplexGuideScreen.route)),
           title: AppText(
             'Keyboard Guide',
             uiStyle: globalStyle.textStyle.regularFont.tileTitle,

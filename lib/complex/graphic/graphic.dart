@@ -1,1 +1,2 @@
-export 'answers_graphic/answers_graphics.dart';
+export 'answers_graphics.dart';
+export 'speed_value.dart';

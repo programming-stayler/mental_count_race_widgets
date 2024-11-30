@@ -8,6 +8,7 @@ export 'dynamic_avatar.dart';
 export 'padding.dart';
 export 'shadow_wrapper.dart';
 export 'text/text.dart';
+export 'transition_route.dart';
 
 class LeftPositioned extends Positioned {
   const LeftPositioned({

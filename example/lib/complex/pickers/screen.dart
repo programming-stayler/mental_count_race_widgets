@@ -1,4 +1,8 @@
+import 'package:example/complex/screen.dart';
+import 'package:example/routes.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mental_count_race_widgets/widgets.dart';
 import 'package:pythagoras_match/pythagoras_match.dart';
 
@@ -10,12 +14,12 @@ class PickersGuideScreen extends StatefulWidget {
   @override
   State<PickersGuideScreen> createState() => _PickersGuideScreenState();
 
-  static PageRoute<PickersGuideScreen> getRoute() {
-    const settings = RouteSettings(name: route);
-
-    return MaterialPageRoute(
-      builder: (_) => const PickersGuideScreen(),
-      settings: settings,
+  static GoRoute buildRoute() {
+    return AppTransitionRoute(
+      path: PickersGuideScreen.route,
+      builder: (context, state) {
+        return const PickersGuideScreen();
+      },
     );
   }
 }
@@ -30,7 +34,10 @@ class _PickersGuideScreenState extends State<PickersGuideScreen> {
     final style = AppGlobalStyle.of(context).style;
     return AppSheetScaffold(
       topChildren: [
-        AppSheetBar(
+        WebAppBar(
+          head: kIsWeb
+              ? buildAppBarHead(context)
+              : buildBackButton(() => context.go(ComplexGuideScreen.route)),
           title: AppText(
             'Pickers Guide',
             uiStyle: style.textStyle.regularFont.tileTitle,
